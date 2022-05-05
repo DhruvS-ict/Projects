@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sale_wizard_form">
+            <field name="name">sale_wizard form</field>
+            <field name="model">sale.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sale Order Wizard">
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="customer_email"/>
+                            <field name="sales_person_id"/>
+                        </group>
+                        <group>
+                            <field name="sales_person_contact"/>
+                            <field name="payment_terms_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="create_rec_wizard" string="Create" type="object"
+                                class="btn-warning"/>
+                        <button name="submit" string="Submit" type="object"
+                                class="btn-success"/>
+                        <button string="cancel" class="btn-info" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="sales_order_wizard_popup">
+            <field name="name">Sale Order Popup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.wizard</field>
+            <field name="view_mode">form</field>
+            <!--            <field name="view_id" ref="s_o_wizard_form"/>-->
+            <field name="target">new</field>
+        </record>
+        <!--  actions  -->
+
+
+    </data>
+
+    <data>
+        <record model="ir.ui.view" id="select_products_form">
+            <field name="name">select_products form</field>
+            <field name="model">select.products</field>
+            <field name="arch" type="xml">
+                <form string="Select Products Wizard">
+                    <header>
+                        <button name="select_product_on_click" string="click" type="object" class="btn-warning"/>
+                    </header>
+                    <group>
+                        <field name="product_ids"/>
+                    </group>
+<!--                    <footer>-->
+<!--                        <button string="cancel" class="btn-info" special="cancel"/>-->
+<!--                    </footer>-->
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="select_products_wizard_popup">
+            <field name="name">Select Products Popup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">select.products</field>
+            <field name="view_mode">form</field>
+            <!--            <field name="view_id" ref="s_o_wizard_form"/>-->
+            <field name="target">new</field>
+        </record>
+        <!--  actions  -->
+
+
+    </data>
+</odoo>

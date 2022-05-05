@@ -1,0 +1,76 @@
+<odoo>
+    <record id="referral_program_web_page_menu" model="website.menu">
+        <field name="name">Referral Program</field>
+        <field name="url">/referral_program_form</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="referral_program_form" name="Referral Registration">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <form role="form" action="/referral_program_form" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <h1 class="header">Referral Registration</h1>
+                        <div class="form-group">
+                            <label for="name" class="control-label">Name</label>
+                            <br/>
+                            <input type="text" name="name" id="name" t-att-value="name"
+                                   required="required" class="focused_inputs"/>
+                            <br/>
+                            <label for="email" class="control-label">Email</label>
+                            <br/>
+                            <input type="text" name="email" t-att-value="email" id="email" class="focused_inputs"/>
+                            <br/>
+                            <label for="referral_name_id" class="control-label">Referral Name</label>
+                            <select class="form-control" name="referral_name_id">
+                                <option value=""></option>
+                                <t t-foreach="referral_name_id" t-as="referral">
+                                    <option t-att-value="referral.id" t-esc="referral.name"/>
+                                </t>
+                            </select>
+                            <br/>
+                            <label for="degree_id" class="control-label">Degree</label>
+                            <select class="form-control" name="degree_id">
+                                <t t-foreach="degree_id" t-as="degree">
+                                    <option t-att-value="degree.id" t-esc="degree.name"/>
+                                </t>
+                            </select>
+                            <br/>
+                            <label for="department_id" class="control-label">Department</label>
+                            <select class="form-control" name="department_id">
+                                <t t-foreach="department_id" t-as="department">
+                                    <option t-att-value="department.id" t-esc="department.name"/>
+                                </t>
+                            </select>
+                            <br/>
+                            <label for="expected_salary" class="control-label">Expected Salary</label>
+                            <br/>
+                            <input type="text" name="expected_salary" t-att-value="expected_salary"
+                                   id="expected_salary" class="focused_inputs"/>
+                            <br/>
+                            <label for="expected_joining_date" class="control-label">Expected Joining Date</label>
+                            <br/>
+                            <input type="date" name="expected_joining_date" t-att-value="expected_joining_date"
+                                   id="expected_joining_date" class="focused_inputs"/>
+                            <br/>
+                            <label for="summary" class="control-label">Summary</label>
+                            <br/>
+                            <input type="text" name="summary" t-att-value="summary"
+                                   id="summary" class="text_area"/>
+<!--                            <label for="stages" class="control-label">Stages</label>-->
+<!--                            <select name="stages" t-att-value="stages" id="stages">-->
+<!--                                <option value="draft">Draft</option>-->
+<!--                                <option value="approved">Approved</option>-->
+<!--                                <option value="cancel">Cancel</option>-->
+<!--                            </select>-->
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-info">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

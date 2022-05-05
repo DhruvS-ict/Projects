@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="view_move_form" model="ir.ui.view">
+            <field name="name">adding fields into invoicelines</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field [@name='invoice_line_ids']/tree" position="inside">
+                    <field name="delivery_address" optional="hide" domain="[('type', '=', 'delivery'), ('parent_id', '=', vendor)]"/>
+                    <field name="vendor" optional="hide"
+                           attrs="{'column_invisible': [('parent.move_type', '!=', 'out_invoice')]}"/>
+                    <field name="vendor_price" optional="hide"
+                           attrs="{'column_invisible': [('parent.move_type', '!=', 'out_invoice')]}"/>
+                    <field name="planned_gp" optional="hide"/>
+                    <field name="description" optional="hide"/>
+                </xpath>
+                <xpath expr="//field [@name = 'line_ids'] / tree" position="inside">
+                    <field name="delivery_address" optional="hide"/>
+                    <field name="vendor" optional="hide"/>
+                    <field name="vendor_price" optional="hide"/>
+                    <field name="planned_gp" optional="hide"/>
+                    <field name="description" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+
+<!--<xpath expr="//button[@name='create_action']" position="replace">-->
+<!--                    <button name="method_direct_trigger" type="object" string="Run Manually" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'code')]}"/>-->
+<!--                </xpath>-->

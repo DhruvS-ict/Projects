@@ -1,0 +1,122 @@
+<odoo>
+    <data>
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_kanban_details')]" position="inside">
+                    <field name="phone" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        <record id="smart_view_search" model="ir.ui.view">-->
+        <!--            <field name="name">smart_view search</field>-->
+        <!--            <field name="model">smart.view</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <search>-->
+        <!--                    <field name="name"/>-->
+        <!--                    <field name="phone_no"/>-->
+        <!--                </search>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <record model="ir.ui.view" id="smart_view_tree">
+            <field name="name">smart_view list</field>
+            <field name="model">smart.view</field>
+            <field name="arch" type="xml">
+<!--                <attribute name="optional">hide</attribute>-->
+                <tree>
+                    <header>
+                        <button name="submit_button" string="Submit" type="object" class="btn-success"/>
+                    </header>
+                    <field name="write_uid"/>
+                    <field name="name1"/>
+                    <field name="name"/>
+<!--                    <field name="phone_no"/>-->
+                    <field name="age"/>
+                    <field name="residential_address" optional="hide"/>
+                    <field name="date"/>
+                    <field name="mail_id"/>
+                    <field name="dob"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="smart_view_form">
+            <field name="name">smart_view form</field>
+            <field name="model">smart.view</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="search_method" string="search" type="object" class="btn btn-primary"/>
+                        <button name="count" string="search-count" type="object" class="secondary"/>
+                        <button name="write_orm" string="Write" type="object" class="btn-warning"/>
+                        <button name="create_orm" string="Create" type="object" class="btn-danger"/>
+                        <button name="browse_orm" string="Browse" type="object" class="btn-info"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button string="client order" type="action" name="%(rental_management.rental_management_action_window)d"
+                                    class="oe_stat_button" icon="fa-list-ol"/>
+<!--                                <div>-->
+<!--                                    <field>-->
+<!--                                        <form>-->
+<!--                                            <field name="name"/>-->
+<!--                                            <field name="dob"/>-->
+<!--                                        </form>-->
+<!--                                    </field>-->
+<!--                                </div>-->
+<!--                            </button>-->
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="name1"/>
+<!--                            <field name="phone_no" widget="phone"/>-->
+                            <field name="age"/>
+                            <field name="residential_address"/>
+                            <field name="date"/>
+                            <field name="mail_id" widget="email"/>
+                            <field name="dob"/>
+                            <field name="write_uid"/>
+                            <field name="select"/>
+<!--                            <field name="cus_one_to_many"/>-->
+                        </group>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids"/>-->
+<!--                        <field name="activity_ids"/>-->
+<!--                        <field name="message_ids"/>-->
+<!--                    </div>-->
+<!--                    <notebook>-->
+<!--                        <page string="one_to_many">-->
+<!--                            <field name="cus_one_to_many">-->
+<!--                                <tree>-->
+<!--                                    <field name="cus_id"/>-->
+<!--                                    <field name="n_name"/>-->
+<!--                                    <field name="management_id"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                    </notebook>-->
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="smart_view_action_window">
+            <field name="name">window</field>
+            <field name="res_model">smart.view</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+
+        <menuitem name="smart view" id="smart_id"/>
+
+
+        <menuitem name="menu_1" id="menu_1_id" parent="smart_id"/>
+        <menuitem name="sub_menu_1" id="sub_menu_1_id" parent="menu_1_id" action="smart_view_action_window"/>
+    </data>
+</odoo>
+

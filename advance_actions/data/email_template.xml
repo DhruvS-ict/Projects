@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <!--    <data noupdate="1">-->
+        <!--Email template -->
+        <record id="new_advance_actions_email_template_id" model="mail.template">
+            <field name="name">Send Email</field>
+            <field name="model_id" ref="advance_actions.model_advance_action"/>
+            <field name="email_from">{{object.from_email}}</field>
+            <field name="email_to">{{object.to_email}}</field>
+            <field name="subject">Send Email to {{object.advance_users}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Hello Mr. <span t-esc="object.advance_users"/>
+                        <!--                        <t t-if="object.name">-->
+                        <!--                            <t t-out="object.name.name or ''">Dhruv Shah</t>-->
+                        <!--                        </t>-->
+                        <!--                        <t t-else="">-->
+                        <!--                            <t>Brandon Freeman</t>,-->
+                        <!--                        </t>-->
+                        <br/>
+                        <br/>
+                        Here is your excel report sheet
+                        <t t-if="object.advance_users">
+                            Timesheet
+                            <strong>INV/2021/05/0005</strong>
+                        </t>
+                        <t t-else="">
+                            Timesheet
+                        </t>
+
+                        which you had created on
+                        <strong>11/04/2022
+                        </strong>
+                        to get records between selected dates.
+                        <t t-if="object.state in ('approve', 'Approve')">
+                            This excel sheet is already approved.
+                        </t>
+                        <t t-else="">
+                            Please, first get your excel sheet approve.
+                        </t>
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                    </p>
+                </div>
+            </field>
+            <!--            <field name="report_template" ref="account_invoices"/>-->
+            <!--            <field name="report_name">Excel report</field>-->
+        </record>
+    </data>
+</odoo>

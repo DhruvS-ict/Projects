@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <record id="registration_details_search" model="ir.ui.view">
+            <field name="name">registration_details search</field>
+            <field name="model">registration.details</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="registration_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="registration_details_tree">
+            <field name="name">registration_details list</field>
+            <field name="model">registration.details</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="registration_id"/>
+                    <field name="mail"/>
+                    <field name="mobile_number"/>
+                    <field name="country"/>
+                    <field name="state"/>
+                    <field name="stage"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="registration_details_form">
+            <field name="name">registration_details form</field>
+            <field name="model">registration.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="approved_func" string="Approve" type="object" class="oe_info"/>
+                        <button name="cancel_func" string="Cancel" type="object" class="oe_success"/>
+                        <button name="reset_func" string="Reset" type="object" class="oe_danger"
+                                attrs="{'invisible': [('stage', '!=', 'cancel')]}"/>
+                        <field name="stage" widget="statusbar" options="{'clickable':'True'}"/>
+                    </header>
+                    <group>
+                        <field name="registration_id"/>
+                        <field name="mail" widget="email"/>
+                        <field name="mobile_number"/>
+                        <field name="country"/>
+                        <field name="state"/>
+                        <field name="educational_qualification">
+                            <tree editable="bottom">
+                                <field name="degree"/>
+                                <field name="institute_name"/>
+                                <field name="pass_out_year"/>
+                                <field name="calculate_difference"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="registration_details_action_window">
+            <field name="name">Registration Details Window</field>
+            <field name="res_model">registration.details</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="registration details" id="r_d_id"/>
+
+        <menuitem name="student details" id="s_details_id" parent="r_d_id" action="registration_details_action_window"/>
+
+    </data>
+</odoo>

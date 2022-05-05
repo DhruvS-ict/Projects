@@ -1,0 +1,63 @@
+<odoo>
+    <record id="exam_login_web_page_menu" model="website.menu">
+        <field name="name">Form</field>
+        <field name="url">/open_form</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="exam_form_page" name="Create Form Record">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form" action="/open_form" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label for="name" class="control-label">Name :</label>
+                                <input type="text" name="invoices_name" t-att-value="name" id="name"
+                                       placeholder="Aktiv" required="required"/>
+                            </div>
+                            <div>
+                                <button type="submit">SUBMIT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+<!--    <template id="record_detail_page" name="Record Details">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div class="oe_structure">-->
+<!--                <div class="container">-->
+<!--                    <br/>-->
+<!--                    <center>-->
+<!--                        <h3>Contacts Details</h3>-->
+<!--                    </center>-->
+<!--                    <br/>-->
+<!--                    <table class="table-striped table">-->
+<!--                        <thead style="font-size: 23px;">-->
+<!--                            <tr>-->
+<!--                                <h6>-->
+<!--                                    <b>-->
+<!--                                        <th>Name</th>-->
+<!--                                    </b>-->
+<!--                                </h6>-->
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                            <t t-foreach="record_detail_page" t-as="temp">-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                        <span t-esc="temp.name"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </t>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
+</odoo>

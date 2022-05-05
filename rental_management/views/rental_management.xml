@@ -1,0 +1,236 @@
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.custom</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]//div[@id='invite_users']" position="after">
+                    <h2>Custom</h2>
+                    <div class="row mt16 o_settings_container" name="catalog_setting_container">
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <label for="is_checked"/>
+                            <field name="is_checked"/>
+                            <div class="text-muted">
+                                please fill the checkbox
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <label for="description"/>
+                            <field name="description" widget="html" attrs="{'invisible':[('is_checked','=',False)]}"/>
+                            <div class="text-muted">
+                                It's visible now
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <label for="seting_id"/>
+                            <field name="seting_id" attrs="{'invisible':[('is_checked','=',False)]}"/>
+                            <div class="text-muted">
+                                It's visible now
+                            </div>
+                        </div>
+                        <!--                        <div class="col-12 col-lg-6 o_setting_box">-->
+                        <!--                            <div class="o_setting_left_pane">-->
+                        <!--                                <field name="is_checked"/>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="o_setting_right_pane">-->
+                        <!--                                <label for="is_checked" string="Test Char"/>-->
+                        <!--                                <div class="text-muted">-->
+                        <!--                                    Test Label-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="col-12 col-lg-6 o_setting_box">-->
+                        <!--                            <div class="o_setting_left_pane">-->
+                        <!--                                <field name="is_active"/>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="o_setting_right_pane">-->
+                        <!--                                <label for="is_active" string="Test Char"/>-->
+                        <!--                                <div class="text-muted">-->
+                        <!--                                    Direct check active field-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+
+         <record id="rental_management_server_action" model="ir.actions.server">
+            <field name="name">SO creation</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_rental_management"/>
+            <field name="binding_model_id" ref="model_rental_management"/>
+            <field name="binding_view_types">tree,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+            "name" : "Employee Wizard",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "xls.rent",
+            "target": "new"
+            }
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+        <record id="rental_management_search" model="ir.ui.view">
+            <field name="name">rental_management search</field>
+            <field name="model">rental.management</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group string="Group By">
+                        <filter name="name" string="Name" context="{'group_by':'name'}"/>
+                    </group>
+                    <field name="rental_type_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="rental_product_id"/>
+                    <!--                    <group string="Group By">-->
+                    <!--                        <fiter name="price" string="Price" context="{'group_by':'price'}"/>-->
+                    <!--                    </group>-->
+                    <field name="price"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="rental_management_tree">
+            <field name="name">rental_management list</field>
+            <field name="model">rental.management</field>
+            <field name="arch" type="xml">
+                <tree>
+<!--                    <header>-->
+<!--                        <button name="create_rent_one" string="Create" type="object" class="btn-success"/>-->
+<!--                    </header>-->
+                    <field name="name"/>
+                    <field name="rental_type_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="rental_product_id"/>
+                    <field name="price"/>
+                    <field name="state"/>
+                    <field name="total_amount"/>
+                    <!--                    <field name="purchase_id"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="rental_management_form">
+            <field name="name">rental_management form</field>
+            <field name="model">rental.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button name="create_excel_report" string="Generate XLS Report" type="object" class="btn btn-Danger"/>-->
+                        <button name="read_record" string="Read" type="object" class="btn btn-warning"/>
+                        <button name="searchread_method" string="Search Read" type="object" class="btn btn-info"/>
+                        <button name="browsemethod" string="Browse" type="object" class="btn btn-success"/>
+                       <field name="state" widget="statusbar" options="{'clickable':'True'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="rental_type_id"/>
+                                <field name="start_date"/>
+                                <field name="first_amount"/>
+                                <field name="last_amount"/>
+                            </group>
+                            <group>
+                                <field name="end_date"/>
+                                <field name="rental_product_id"/>
+                                <field name="price"/>
+                                <field name="dob_id"/>
+                                <field name="dob_ids"/>
+                                <field name="total_amount"/>
+                                <field name="email"/>
+                                <field name="rental_image"/>
+                                <field name="rent_ids">
+                                    <tree editable="bottom">
+                                        <field name="rent_payment_id"/>
+                                        <field name="rent_client"/>
+                                        <field name="management_id"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="rental_management_kanban">
+            <field name="name">rental_management kanban</field>
+            <field name="model">rental.management</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban" sample="1">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <div t-attf-class="oe_kanban_global_click">
+                                    <field name="rental_image" widget="image"/>
+                                    <div class="o_kanban_details">
+                                        <br/>
+                                        <br/>
+                                        <field name="name"/>
+                                        -
+                                        <field name="email"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="rental_management_action_window">
+            <field name="name">Rental Management Window</field>
+            <field name="res_model">rental.management</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="r_window">
+            <field name="name">Rental window</field>
+            <field name="res_model">rental.management</field>
+            <field name="view_mode">search,tree,form,kanban</field>
+        </record>
+
+
+        <menuitem name="rental management" id="rm_id"/>
+
+        <menuitem name="rental_management" id="rental_management_id" parent="rm_id"/>
+        <menuitem name="rental" id="rental_id" parent="rental_management_id" action="r_window"/>
+        <menuitem name="rental_type" id="rental_type_id" parent="rental_management_id" action="rt_window"/>
+
+    </data>
+
+
+</odoo>
+

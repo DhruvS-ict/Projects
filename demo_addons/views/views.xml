@@ -1,0 +1,97 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="demo_addons.list">
+      <field name="name">demo_addons list</field>
+      <field name="model">demo_addons.demo_addons</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+          <field name="description"/>
+          <field name="number"/>
+          <field name="male" attrs="{'invisible':1}"/>
+          <field name="active"/>
+          <field name="file"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="demo_addons.action_window">
+      <field name="name">Existing_Pro</field>
+      <field name="res_model">demo_addons.demo_addons</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="demo_addons.action_window1">
+      <field name="name">incoming</field>
+      <field name="res_model">demo_addons.demo_addons</field>
+      <field name="view_mode">graph</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="demo_addons.action_window2">
+      <field name="name">Past_5yrs_Rec</field>
+      <field name="res_model">demo_addons.demo_addons</field>
+      <field name="view_mode">kanban,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="demo_addons.action_window4">
+      <field name="name">Trash_Rec</field>
+      <field name="res_model">demo_addons.demo_addons</field>
+      <field name="view_mode">kanban,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="demo_addons.action_window3">
+      <field name="name">Past_10yrs_Rec</field>
+      <field name="res_model">demo_addons.demo_addons</field>
+      <field name="view_mode">kanban</field>
+    </record>
+
+
+
+
+
+    <!-- server action to the one above -->
+<!--    <record model="ir.actions.server" id="demo_addons_action_server">-->
+<!--      <field name="name">demo_addons server</field>-->
+<!--      <field name="model_id" ref="demo_addons_demo_addons"/>-->
+<!--      <field name="state">code</field>-->
+<!--      <field name="code">-->
+<!--        action = {-->
+<!--          "type": "ir.actions.act_window",-->
+<!--          "view_mode": "tree,form,kanban",-->
+<!--          "res_model": model._name,-->
+<!--        }-->
+<!--      </field>-->
+<!--    </record>-->
+
+    <!-- Top menu item -->
+    <menuitem name="demo_addons" id="demo_addons.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Client_Record" id="demo_addons.Client_Record" parent="demo_addons.menu_root"/>
+    <menuitem name="Profile" id="demo_addons.Profile" parent="demo_addons.menu_root"/>
+    <menuitem name="Contacts" id="demo_addons.Contacts" parent="demo_addons.menu_root"/>
+
+<!--    <menuitem name="Current_Rec" id="demo_addons.Client_Record_list" parent="demo_addons.Client_Record"-->
+<!--              action="demo_addons.action_window2"/>-->
+    <menuitem name="Past_Rec" id="demo_addons.Client_Record_list" parent="demo_addons.Client_Record"
+              action="demo_addons.action_window2"/>
+    <menuitem name="Existing_Rec" id="demo_addons.Client_Record_list0" parent="demo_addons.Client_Record"
+              action="demo_addons.action_window3"/>
+    <menuitem name="Deleted_Rec" id="demo_addons.Client_Record_list1" parent="demo_addons.Client_Record"
+              action="demo_addons.action_window4"/>
+    <menuitem name="Current_Pro" id="demo_addons.Profile_list" parent="demo_addons.Profile"
+              action="demo_addons.action_window"/>
+    <menuitem name="C_Details" id="demo_addons.Contacts_list" parent="demo_addons.Contacts"
+              action="demo_addons.action_window1"/>
+<!--    <menuitem name="Server to list" id="demo_addons" parent="demo_addons.menu_3"-->
+<!--              action="demo_addons.action_server"/>-->
+
+  </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.custom</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Exam" string="Exam" data-key="exam">
+                        <h2>Module Installation</h2>
+                        <div class="row mt16 o_settings_container" name="catalog_setting_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <label for="module_website"/>
+                                <field name="module_website"/>
+                                <div class="text-muted">
+                                    please fill the checkbox to install module
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <label for="current_month_ids"/>
+                                <field name="current_month_ids"/>
+                                <div class="text-muted">
+                                    Please select records of the current month
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="second_exam_config_create_id" model="ir.actions.act_window">
+            <field name="name">Exam</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="base.res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'exam'}</field>
+        </record>
+
+        <menuitem id="menu_exam_configuration" name="Configuration" parent="se_id"/>
+
+        <menuitem id="menu_exam_setting" name="Setting" parent="menu_exam_configuration"
+                  action="second_exam_config_create_id"/>
+    </data>
+</odoo>

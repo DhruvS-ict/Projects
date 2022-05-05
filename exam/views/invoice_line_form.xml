@@ -1,0 +1,86 @@
+<odoo>
+    <template id="invoice_exam_form" name="Invoice Web Form">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <form role="form" action="/invoice_form" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="form-group">
+                            <label for="invoices_name" class="control-label">Name</label>
+                            <input type="text" name="invoices_name" t-att-value="invoices_name" id="invoices_name"
+                                   required="required"/>
+                            <br/>
+                            <label for="invoices_email" class="control-label">E-mail</label>
+                            <input type="text" name="invoices_email" t-att-value="invoices_email" id="invoices_email"/>
+                            <br/>
+                            <label for="invoices_salary" class="control-label">Salary</label>
+                            <input type="text" name="invoices_salary" t-att-value="invoices_salary"
+                                   id="invoices_salary"/>
+                            <br/>
+                            <label for="invoices_summary" class="control-label">Summary</label>
+                            <input type="text" name="invoices_summary" t-att-value="invoices_summary"
+                                   id="invoices_summary"/>
+                            <br/>
+                            <label for="invoices_stages" class="control-label">Stages</label>
+                            <input type="text" name="invoices_stages" t-att-value="invoices_stages"
+                                   id="invoices_stages"/>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-info">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="invoice_form_details" name="Invoice Record Details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h3>Invoice Details</h3>
+                    </center>
+                    <br/>
+                    <table class="table-striped table">
+                        <thead style="font-size: 23px;">
+                            <tr>
+                                <h6>
+                                    <b>
+                                        <th>Name</th>
+                                        <th>E-mail</th>
+                                        <th>Salary</th>
+                                        <th>Summary</th>
+                                        <th>Stages</th>
+                                    </b>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="invoice_form_details" t-as="temp">
+                                <tr>
+                                    <td>
+                                        <span t-esc="temp.invoices_name"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="temp.invoices_email"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="temp.invoices_salary"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="temp.invoices_summary"/>
+                                    </td>
+                                     <td>
+                                        <span t-esc="temp.invoices_stages"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,23 @@
+<odoo>
+
+<!--        <record id="hr_view_employee_form" model="ir.ui.view">-->
+<!--            <field name="name">hr employee form inherit</field>-->
+<!--            <field name="model">hr.employee</field>-->
+<!--            <field name="inherit_id" ref="hr.view_employee_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                    <field name="name" position="after">-->
+<!--                            <field name="age"/>-->
+<!--                    </field>-->
+<!--            </field>-->
+<!--        </record>-->
+        <record model="ir.actions.act_window" id="hr_report_wizard">
+                <field name="name">Excel Report Popup</field>
+                <field name="res_model">hr.employee</field>
+                <field name="view_mode">form</field>
+                <field name="target">new</field>
+        </record>
+
+        <menuitem name="Timesheet report" id="timesheet_id" parent="hr.hr_menu_hr_reports"
+                  action="excel_report_wizard"/>
+
+</odoo>

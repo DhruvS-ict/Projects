@@ -1,0 +1,38 @@
+<odoo>
+    <template id="apply_css_on_form" name="Advance Action">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <form role="form" action="/css_form" method="POST" class="align_center">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <h1 class="header">Login</h1>
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label for="u_name" class="control-label">user name</label>
+                                <br/>
+                                <input type="text" class="field-name" name="u_name" t-att-value="u_name" id="u_name"
+                                       placeholder="type your username"/>
+                                <br/>
+                                <label for="password" class="control-label">password</label>
+                                <br/>
+                                <input type="text" class="field-name" name="password" t-att-value="password"
+                                       id="password"
+                                       placeholder="Type your password"/>
+                            </div>
+
+
+                            <img class="form-image" src="exam/static/src/css/icon.png"
+                                 alt="Avatar"/>
+
+                            <center>
+                                <a href="https://www.w3schools.com/css/css_selectors.asp">
+                                    <button>Login</button>
+                                </a>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_rental_management_quotation" model="ir.actions.report">
+            <field name="name">Quotation</field>
+            <field name="model">rental.management</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">rental_management.report_template</field>
+            <field name="report_file">rental_management.report_template</field>
+            <field name="print_report_name">'Rental Quotation'</field>
+            <field name="binding_model_id" ref="model_rental_management"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_rental_id"/>
+        </record>
+    </data>
+</odoo>

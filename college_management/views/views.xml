@@ -1,0 +1,170 @@
+<odoo>
+    <data>
+        <!--  explicit list view definition  -->
+        <record model="ir.ui.view" id="college_management_tree">
+            <field name="name">college_management list</field>
+            <field name="model">college_management.college_management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <header>
+                        <button name="object_button" string="College_object_button" type="object" class="btn-success"/>
+                        <button name="create_orm" string="Create Function Button" type="object" class="btn-secondary"/>
+                        <button name="write_orm" string="Write Function Button" type="object" class="btn-warning"/>
+                        <button name="unlink_orm" string="Unlink Function Button" type="object" class="btn-info"/>
+                    </header>
+                    <field name="name"/>
+                    <field name="value"/>
+                    
+                    <field name="value2" widget="priority"/>
+                    <field name="interested" widget="boolean_button"/>
+                    <field name="cllg_faculty" widget="many2many_tags_avatar" options="{'color_field':'color'}"/>
+                    <field name="gender"/>
+                    <field name="description" widget="char_emojis"/>
+
+                    <field name="status" widget="badge" decoration-success="status=='draft'"
+                           decoration-info="status=='sent'" decoration-warning="status=='paid'"
+                           decoration-danger="status=='offer'" optional="show"/>
+                    <!--                    <field name="task"/>-->
+                    <!--                    <field name="x_signature"/>-->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="college_management_form">
+            <field name="name">college_management form</field>
+            <field name="model">college_management.college_management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="object_button" string="College_object_button" type="object" class="btn-success"/>
+                        <button name="create_orm" string="Create Function Button" type="object" class="btn-secondary"/>
+                        <button name="write_orm" string="Write Function Button" type="object" class="btn-success"/>
+                        <button name="unlink_orm" string="Unlink Function Button" type="object" class="btn-primary"/>
+                        <button name="current_clients" string="current_clients" type="object" class="btn-warning"/>
+                        <button string="cancel" class="btn-danger" special="cancel"/>
+                        <field name="status" widget="statusbar" options="{'clickable':'1'}"/>
+                    </header>
+                    <!--                     <header> -->
+                    <!--                    <button name="object_button" string="College_object_button" type="object" states="draft"-->
+                    <!--                            class="btn-primary" data-hotkey="g"/>-->
+                    <!--                </header>-->
+<!--                    SYNTAX for Smart Button :- -->
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="current_clients" type="object">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Client Records</span>
+                            </div>
+                        </button>
+                    </div>
+
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="phone_no" widget="phone"/>
+                            <field name="value"/>
+                            <field name="purchase_id"/>
+                            <field name="value2" widget="priority" options="{'color_field':'color'}"/>
+                        </group>
+                        <group>
+                            <field name="description" widget="char_emojis"/>
+                            <!--                            <field name="cus_one_to_many"/>-->
+
+                            <!--                        <field name="g_num" widget="gauge"/>-->
+                            <!--                        <field name="task" widget="badge" decoration-success="task=='done'" decoration-info="task=='pending'" optional="show"/>-->
+                        </group>
+
+                        <group>
+                            <field name="gender" widget="radio"/>
+                            <field name="interested" widget="boolean_button"/>
+                            <field name="lang_id" widget="selection"/>
+                            <field name="cllg_faculty" widget="many2many_tags_avatar"
+                                   options="{'color_field':'color'}"/>
+
+                            <!--                        <field name="call_num" />-->
+                            <!--                        <field name="x_signature" widget="signature"/>-->
+
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="one_to_many">
+                            <field name="cus_one_to_many">
+                                <tree>
+                                    <field name="cus_id"/>
+                                    <field name="n_name"/>
+                                    <field name="management_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="notebook">
+                            <field name="client_otm">
+                                <tree>
+                                    <field name="address_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                    <!--                    <div class="oe_chatter">-->
+                    <!--                        <field name="message_follower_ids"/>-->
+                    <!--                         <field name="activity_ids"/>-->
+                    <!--                        <field name="message_ids"/>-->
+                    <!--                    </div>-->
+                </form>
+            </field>
+        </record>
+        <!--  actions opening views on models  -->
+        <record model="ir.actions.act_window" id="college_management_action_window">
+            <field name="name">college_management window</field>
+            <field name="res_model">college_management.college_management</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="c_m_a_window">
+            <field name="name">college_management window</field>
+            <field name="res_model">college_management.college_management</field>
+            <field name="view_mode">kanban</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="c1_m1_a1_window">
+            <field name="name">college_management window</field>
+            <field name="res_model">college_management.college_management</field>
+            <field name="view_mode">graph</field>
+        </record>
+
+        server action to the one above
+        <record model="ir.actions.server" id="college_management_action_server">
+            <field name="name">college_management server</field>
+            <field name="model_id" ref="model_college_management_college_management"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form,kanban",
+                "res_model": model._name,
+                "name":"College_Record"
+                }
+            </field>
+        </record>
+        <!--  Top menu item  -->
+        <menuitem name="college management" id="college_management_menu_root"/>
+        <!--  menu categories  -->
+        <menuitem name="Menu 1" id="college_management_menu_1" parent="college_management_menu_root"/>
+        <menuitem name="Menu 2" id="college_management_menu_2" parent="college_management_menu_root"/>
+        <!--  actions  -->
+        <menuitem name="List" id="college_management_menu_1_list" parent="college_management_menu_1"
+                  action="college_management_action_window"/>
+
+        <menuitem name="list1" id="c_m_menu_1_list1" parent="college_management_menu_1_list"
+                  action="c_m_a_window"/>
+        <menuitem name="list2" id="c_m_menu_2_list1" parent="college_management_menu_1_list"
+                  action="c1_m1_a1_window"/>
+
+
+
+
+        <menuitem name="Server to list" id="college_management" parent="college_management_menu_2"
+                  action="college_management_action_server"/>
+    </data>
+</odoo>
+

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_advance_action,advance.action,model_advance_action,base.group_user,1,1,1,1
+access_excel_wizard,excel.wizard,model_excel_wizard,base.group_user,1,1,1,1
+
+
+

@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="move_bill_server_action" model="ir.actions.server">
+            <field name="name">Generate Subscription Bill</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.generate_bill()</field>
+        </record>
+    </data>
+</odoo>

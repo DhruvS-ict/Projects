@@ -1,0 +1,67 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="dhruv.list">
+      <field name="name">Dhruv list</field>
+      <field name="model">dhruv.dhruv</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+          <field name="description"/>
+          <field name="today"/>
+<!--          <field name="tarikh"/>-->
+          <field name="age"/>
+          <field name="male"/>
+          <field name="active"/>
+<!--          <field name="mod_ids"/>-->
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="dhruv.action_window">
+      <field name="name">Dhruv window</field>
+      <field name="res_model">dhruv.dhruv</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="dhruv.action_server">
+      <field name="name">Dhruv server</field>
+      <field name="model_id" ref="model_dhruv_dhruv"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form,kanban",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Dhruv" id="dhruv.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="dhruv.menu_1" parent="dhruv.menu_root"/>
+    <menuitem name="Menu 2" id="dhruv.menu_2" parent="dhruv.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="dhruv.menu_1_list" parent="dhruv.menu_1"
+              action="dhruv.action_window"/>
+    <menuitem name="Server to list" id="dhruv" parent="dhruv.menu_2"
+              action="dhruv.action_server"/>
+
+  </data>
+</odoo>

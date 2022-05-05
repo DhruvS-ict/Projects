@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_reference">
+        <t t-foreach="docs" t-as="o">
+            <!--            <t t-call="web.html_container">-->
+            <!--                <t t-call="web.external_layout">-->
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2 class="mt16">
+                    <span t-field="o.name"/>
+                </h2>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <table class="table table-sm o_main_table">
+                            <tr>
+                                <td width="100%">
+                                    <table>
+                                        <tr>
+<!--                                            <td colspan="3" class="text-center">-->
+<!--                                                <span t-field="o.customer_id"/>-->
+<!--                                            </td>-->
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>rental_type_id</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.rental_type_id"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>start_date</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.start_date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span t-field="o.first_amount">
+                                                    <strong>first_amount:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>and</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.last_amount">
+                                                    <strong>last_amount:</strong>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>end_date</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.end_date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>rental_product_id</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.rental_product_id"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>price</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.price"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>dob_id</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.dob_id"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>email</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.email"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-center">
+                                                <span t-field="o.total_amount"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--                </t>-->
+            <!--            </t>-->
+        </t>
+    </template>
+
+    <template id="report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="rental_management.report_reference"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,30 @@
+<odoo>
+    <record id="view_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale_order_inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <!--        <field name="mode">primary</field>-->
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//field[@name='partner_id']" position="after">-->
+            <!--                <field name="sale_test"/>-->
+            <!--            </xpath>-->
+            <field name="partner_id" position="after">
+                <field name="customer_reference"/>
+                <field name="description"/>
+            </field>
+        </field>
+    </record>
+
+    <!--    <record id="view_quotation_form_with_onboarding_inheritqqqq" model="ir.ui.view">-->
+    <!--        <field name="name">sale.order.inherited.form</field>-->
+    <!--        <field name="model">sale.order</field>-->
+    <!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+    <!--&lt;!&ndash;        <field name="mode">primary</field>&ndash;&gt;-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <field name="payment_term_id" position="after">-->
+    <!--                <field name="sale_test"/>-->
+    <!--            </field>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+</odoo>

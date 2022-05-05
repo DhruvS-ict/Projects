@@ -1,0 +1,106 @@
+<odoo>
+    <record id="registration_details_web_page_menu" model="website.menu">
+        <field name="name">Registration Details</field>
+        <field name="url">/registration_web_form</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="registration_details_form" name="Registration Form">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <form role="form" action="/registration_web_form" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <h1 class="header">Registration Form</h1>
+                        <div class="form-group">
+                            <label for="registration_id" class="control-label">Name</label>
+                            <select class="form-control" name="registration_id">
+                                <t t-foreach="registration_name_id" t-as="details">
+                                    <option t-att-value="details.id" t-esc="details.name"/>
+                                </t>
+                            </select>
+                            <br/>
+                            <label for="mail" class="control-label">Email</label>
+                            <br/>
+                            <input type="text" name="mail" t-att-value="mail" id="mail" class="focused_inputs"/>
+                            <br/>
+                            <label for="mobile_number" class="control-label">Mobile Number</label>
+                            <br/>
+                            <input type="text" name="mobile_number" t-att-value="mobile_number"
+                                   id="mobile_number" class="focused_inputs"/>
+                            <br/>
+                            <label for="country" class="control-label">Country</label>
+                            <select class="form-control" name="country">
+                                <t t-foreach="country_details" t-as="part">
+                                    <option t-att-value="part.id" t-esc="part.name"/>
+                                </t>
+                            </select>
+                            <br/>
+                            <label for="state" class="control-label">State</label>
+                            <select class="form-control" name="state">
+                                <t t-foreach="state_records" t-as="records">
+                                    <option t-att-value="records.id" t-esc="records.name"/>
+                                </t>
+                            </select>
+                            <br/>
+                            <!--                            <label for="expected_salary" class="control-label">Expected Salary</label>-->
+                            <!--                            <br/>-->
+                            <!--                            <input type="text" name="expected_salary" t-att-value="expected_salary"-->
+                            <!--                                   id="expected_salary" class="focused_inputs"/>-->
+                            <!--                            <br/>-->
+                            <!--                            <label for="expected_joining_date" class="control-label">Expected Joining Date</label>-->
+                            <!--                            <br/>-->
+                            <!--                            <input type="date" name="expected_joining_date" t-att-value="expected_joining_date"-->
+                            <!--                                   id="expected_joining_date" class="focused_inputs"/>-->
+                            <!--                            <br/>-->
+                            <!--                            <label for="summary" class="control-label">Summary</label>-->
+                            <!--                            <br/>-->
+                            <!--                            <input type="text" name="summary" t-att-value="summary"-->
+                            <!--                                   id="summary" class="text_area"/>-->
+                            <label for="stage" class="control-label">Stages</label>
+                            <select name="stage" t-att-value="stage" id="stage">
+                                <option value="draft">Draft</option>
+                                <option value="approved">Approved</option>
+                                <option value="cancel">Cancel</option>
+                            </select>
+                        </div>
+                        <div>
+<!--                            <a href="/registration_thankyou">-->
+                                <button type="submit" class="btn-info">SUBMIT</button>
+<!--                            </a>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="registration_thanks_page" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/registration_thankyou</field>
+        <field name="website_published">True</field>
+        <field name="key">registration_details.registration_thanks_page</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="registration_details.registration_thanks_page">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Thanks !</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                        Your message has been sent successfully.
+                                    </div>
+                                    <p>
+                                        We will reach back to you shortly.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

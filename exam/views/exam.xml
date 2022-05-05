@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="second_exam_search" model="ir.ui.view">
+            <field name="name">second_exam search</field>
+            <field name="model">second.exam</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="second_exam_tree">
+            <field name="name">second_exam list</field>
+            <field name="model">second.exam</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="second_exam_form">
+            <field name="name">second_exam form</field>
+            <field name="model">second.exam</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="second_exam_action_window">
+            <field name="name">Second Exam Window</field>
+            <field name="res_model">second.exam</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="exam" id="se_id" action="second_exam_action_window"/>
+
+<!--        <menuitem name="second_exam" id="second_exam_id" parent="second_exam_action_window" action="second_exam_action_window"/>-->
+
+    </data>
+</odoo>

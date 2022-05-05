@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <record id="hr_referral_application_search" model="ir.ui.view">
+            <field name="name">hr_referral_application search</field>
+            <field name="model">hr.referral.application</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_referral_application_tree">
+            <field name="name">hr_referral_application list</field>
+            <field name="model">hr.referral.application</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="referral_name_id"/>
+                    <field name="degree_id"/>
+                    <field name="department_id"/>
+                    <field name="expected_salary"/>
+                    <field name="expected_joining_date"/>
+                    <field name="stages"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_referral_application_form">
+            <field name="name">hr_referral_application form</field>
+            <field name="model">hr.referral.application</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="approved_func" string="Approve" type="object" class="oe_info"/>
+                        <button name="create_application" string="Create Application" type="object" class="oe_success" attrs="{'invisible': [('stages', '!=', 'approved')]}"/>
+                        <field name="stages" widget="statusbar" options="{'clickable':'True'}"/>
+                    </header>
+                    <group>
+                        <field name="name"/>
+                        <field name="email" widget="email"/>
+                        <field name="referral_name_id"/>
+                        <field name="degree_id"/>
+                        <field name="department_id"/>
+                        <field name="expected_salary"/>
+                        <field name="expected_joining_date"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="hr_referral_application_action_window">
+            <field name="name">Hr Referral Application Window</field>
+            <field name="res_model">hr.referral.application</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="hr referral application" id="h_r_a_id" action="hr_referral_application_action_window"/>
+
+        <menuitem name="referral application" id="application_id" parent="h_r_a_id" action="hr_referral_application_action_window"/>
+
+        <menuitem name="Referral Program" id="program_id" parent="h_r_a_id" action="hr_referral_application_action_window"/>
+
+    </data>
+</odoo>

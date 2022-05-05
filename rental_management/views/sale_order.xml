@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <header>
+                    <button name="%(sales_order_wizard_popup)d" string="Sale Wizard" type="action" class="btn-warning"/>
+                    <button name="%(select_products_wizard_popup)d" string="Select Product Wizard" type="action"
+                            class="btn-info"/>
+                </header>
+                <group>
+                    <field name="validity_date" position="after">
+                        <field name="phone"/>
+                    </field>
+                    <field name="phone" position="after">
+                        <field name="email"/>
+                    </field>
+<!--                    <field name="partner_id" position="after">-->
+<!--                        <field name="customer_rank"/>-->
+<!--                    </field>-->
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

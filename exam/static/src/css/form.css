@@ -1,0 +1,36 @@
+.field-name {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: solid;
+  border-bottom: 3px solid black;
+  background-image: url("https://www.pngmagic.com/product_images/plain-soid-light-cyan-Blue-bhackground-images.jpg");
+}
+.field-name:focus {
+  border: none;
+  border-bottom: 2px solid red;
+  text-color: white;
+  background-color: white;
+  right: 130px;
+}
+
+.align_center {
+    text-align: center;
+    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/misty-teal-mountains-derek-motonaga.jpg");
+    margin-right: 250px;
+    margin-left: 250px;
+}
+
+.control-label {
+    position: relative;
+
+}
+
+.form-image{
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+

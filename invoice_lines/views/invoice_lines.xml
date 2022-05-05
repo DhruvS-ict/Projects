@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record id="invoice_lines_search" model="ir.ui.view">
+            <field name="name">invoice_lines search</field>
+            <field name="model">invoice.lines</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="invoices_name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="invoice_lines_tree">
+            <field name="name">invoice_lines list</field>
+            <field name="model">invoice.lines</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="invoices_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="invoice_lines_form">
+            <field name="name">invoice_lines form</field>
+            <field name="model">invoice.lines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button name="read_record" string="Read" type="object" class="btn btn-warning"/>-->
+<!--                        <button name="searchread_method" string="Search Read" type="object" class="btn btn-info"/>-->
+<!--                        <button name="browsemethod" string="Browse" type="object" class="btn btn-success"/>-->
+                        <field name="invoices_stages" widget="statusbar" options="{'clickable':'True'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="invoices_name"/>
+                            <field name="invoices_email"/>
+                            <field name="invoices_salary"/>
+                            <field name="invoices_summary"/>
+                        </group>
+                    </sheet>
+                    <!--                                <field name="rent_ids">-->
+                    <!--                                    <tree editable="bottom">-->
+                    <!--                                        <field name="rent_payment_id"/>-->
+                    <!--                                        <field name="rent_client"/>-->
+                    <!--                                        <field name="management_id"/>-->
+                    <!--                                    </tree>-->
+                    <!--            </field>-->
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="invoice_lines_action_window">
+            <field name="name">Invoice Lines Window</field>
+            <field name="res_model">invoice.lines</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="invoice lines" id="il_id"/>
+
+        <menuitem name="invoice_lines" id="lines_id" parent="il_id" action="invoice_lines_action_window"/>
+    </data>
+</odoo>

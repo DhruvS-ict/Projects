@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_college_management_college_management,college_management.college_management,model_college_management_college_management,base.group_user,1,1,1,1
+
+access_college_cus_college_cus,college_cus,model_college_cus,base.group_user,1,1,1,1
+access_college_client_college_client,college_client,model_college_client,base.group_user,1,1,1,1

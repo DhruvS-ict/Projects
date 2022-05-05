@@ -1,0 +1,92 @@
+<odoo>
+<!--    <template id="form_page_record" name="Website Form Details">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="oe_structure">-->
+<!--                    <div class="container">-->
+<!--                        <form role="form" action="/create_record" method="POST">-->
+<!--                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="name" class="control-label">Name :</label>-->
+<!--                                <input type="text" name="name" t-att-value="name" id="name"-->
+<!--                                       placeholder="Aktiv" required="required"/>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <button type="submit">SUBMIT</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
+
+
+     <template id="main_page" name="Contacts Details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h3>Contacts Details</h3>
+                    </center>
+                    <br/>
+                    <table class="table-striped table">
+                        <thead style="font-size: 23px;">
+                            <tr>
+                                <h6>
+                                    <b>
+                                        <th>Name</th>
+                                    </b>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="key" t-as="rec">
+                                <tr>
+                                    <td>
+
+                                            <span t-esc="rec.display_name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+<!--    <template id="form_list" name="Contacts Client Details">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div class="oe_structure">-->
+<!--                <div class="container">-->
+<!--                    <br/>-->
+<!--                    <center>-->
+<!--                        <h3>Contacts Client Details</h3>-->
+<!--                    </center>-->
+<!--                    <br/>-->
+<!--                    <table class="table-striped table">-->
+<!--                        <thead style="font-size: 23px;">-->
+<!--                            <tr>-->
+<!--                                <h6>-->
+<!--                                    <b>-->
+<!--                                        <th>Name</th>-->
+<!--                                    </b>-->
+<!--                                </h6>-->
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                            <t t-foreach="form_list" t-as="det">-->
+<!--                                <tr>-->
+<!--                                    <td rowspan="1" class="text-center">-->
+<!--                                        <span t-esc="det.name"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </t>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rental_management,rental.management,model_rental_management,base.group_user,1,1,1,1
+access_rental_type,rental.type,model_rental_type,base.group_user,1,1,1,1
+access_sale_wizard,sale.wizard,model_sale_wizard,base.group_user,1,1,1,1
+access_res_partner,res.partner,model_res_partner,base.group_user,1,1,1,1
+access_rent_one,rent.one,model_rent_one,base.group_user,1,1,1,1
+access_select_products,select.products,model_select_products,base.group_user,1,1,1,1
+access_xls_rent,xls.rent,model_xls_rent,base.group_user,1,1,1,1

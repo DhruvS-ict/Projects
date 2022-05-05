@@ -1,0 +1,71 @@
+<odoo>
+    <!--    <record id="view_quotation_tree_with_onboarding_inheritqqqq" model="ir.ui.view">-->
+    <!--        <field name="name">sale.order.inherited</field>-->
+    <!--        <field name="model">sale.order</field>-->
+    <!--        <field name="inherit_id" ref="sale.view_quotation_tree"/>-->
+    <!--        <field name="mode">primary</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <xpath expr="//field[@name='partner_id']" position="after">-->
+    <!--                <field name="sale_test"/>-->
+    <!--            </xpath>-->
+    <!--&lt;!&ndash;            <field name="partner_id" position="after">&ndash;&gt;-->
+    <!--&lt;!&ndash;                <field name="sale_test"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </field>&ndash;&gt;-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.inherited.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <!--        <field name="mode">primary</field>-->
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="user_dob"/>
+            </field>
+            <field name="vat" position="before">
+                <field name="file_upload"/>
+            </field>
+            <field name="category_id" position="after">
+                <field name="cus_img" widget="image" class="oe_avatar"/>
+            </field>
+            <xpath expr="//div[hasclass('o_address_format')]/field[@name='street2']" position="after">
+                <field name="street3" placeholder="street3"/>
+            </xpath>
+            <xpath expr="//field[@name='file_upload']" position="after">
+                <field name="description"/>
+            </xpath>
+            <field name="file_upload" position="after">
+                <field name="character_reference"/>
+            </field>
+            <field name="file_upload" position="before">
+                <field name="user_number"/>
+            </field>
+            <field name="user_dob" position="after">
+                <field name="attach_docs"/>
+            </field>
+            <field name="file_upload" position="replace">
+                <field name="attach_docs" nolabel="1"/>
+            </field>
+            <field name="user_dob" position="after">
+                <field name="cus_id"/>
+            </field>
+            <field name="user_dob" position="before">
+                <field name="cus_details" widget="many2many_tags"/>
+            </field>
+            <field name="cus_details" position="before">
+                <field name="cus_head" widget="radio" help="Please Select One option for required"/>
+            </field>
+            <field name="cus_head" position="after">
+                <field name="smart_test"/>
+            </field>
+            <!--            <xpath expr="form1/sheet/page/group/field[@name='file_upload']" position="replace">-->
+            <!--                    <field name="attach_docs"/>-->
+            <!--            </xpath>-->
+            <!--             <xpath expr="//field[@name='file_upload']" position="replace">-->
+            <!--                      [<field name="attach_docs"/>]<field name="file_upload"/>-->
+            <!--             </xpath>-->
+
+        </field>
+    </record>
+</odoo>

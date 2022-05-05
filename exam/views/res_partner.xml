@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <record id="res_partner_server_action" model="ir.actions.server">
+            <field name="name">SO creation</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "name" : "Exam Wizard",
+                "type": "ir.actions.act_window",
+                "view_mode": "form",
+                "res_model": "res.wizard",
+                "target": "new",
+                "context": {'active_ids': records.ids}
+                }
+            </field>
+        </record>
+
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <field name="category_id" position="after">
+                    <field name="date_of_birth_date"/>
+                    <field name="your_age"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>

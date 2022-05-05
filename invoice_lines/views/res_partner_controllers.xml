@@ -1,0 +1,145 @@
+<odoo>
+    <!--    <template id="contacts_list" name="Contacts List">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <h1>Hello</h1>-->
+    <!--        </t>-->
+    <!--        &lt;!&ndash;         <h1>Hello</h1> &ndash;&gt;-->
+    <!--    </template>-->
+
+
+    <!--    <template id="contacts_records_page" name="Contacts Details">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <t t-foreach="contact_record" t-as="rec">-->
+    <!--                <t t-esc="rec.record_list"/>-->
+    <!--            </t>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <template id="main_page" name="Contacts Details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h3>Contacts Details</h3>
+                    </center>
+                    <br/>
+                    <table class="table-striped table">
+                        <thead style="font-size: 23px;">
+                            <tr>
+                                <h6>
+                                    <b>
+                                        <th>Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Email</th>
+                                        <th>
+                                            <b>Country</b>
+                                        </th>
+                                    </b>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="record_list" t-as="temp">
+                                <tr>
+                                    <td>
+                                        <a t-attf-href="/contact/record/{{slug(temp)}}">
+                                            <span t-esc="temp.display_name"/>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <span t-esc="temp.phone"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="temp.email"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="temp.country_id.name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="contacts_link_record_page" name="Contacts Client Details">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <center>
+                        <h3>Contacts Client Details</h3>
+                        <!--                        <span t-field="custom.image_1920"-->
+                        <!--                              t-options="{'widget': 'image', 'preview_image': 'image_1920'}"-->
+                        <!--                              class="d-flex h-100 justify-content-center align-items-center"/>-->
+                    </center>
+                    <br/>
+                    <table class="table-striped table">
+                        <thead style="font-size: 23px;">
+                            <tr>
+                                <h6>
+                                    <b>
+                                        <th>Profile</th>
+                                        <th>Name</th>
+                                        <th>City</th>
+                                        <!--                                        <th>Function</th>-->
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>category_id</th>
+                                        <th>Birth Date</th>
+                                        <th>
+                                            <b>Age</b>
+                                        </th>
+                                    </b>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--                            <t t-foreach="companies" t-as="det">-->
+                            <tr>
+                                <td>
+                                    <span>
+                                        <img style="border-radius: 100px;"
+                                             t-att-src="'/web/image/res.partner/%s/image_1920' % custom.id"
+                                             alt="Image"/>
+                                    </span>
+                                </td>
+                                <td rowspan="1" class="text-center">
+                                    <span t-esc="custom.display_name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="custom.city"/>
+                                </td>
+                                <!--                                    <td>-->
+                                <!--                                        <span t-esc="det.function"/>-->
+                                <!--                                    </td>-->
+                                <td>
+                                    <span t-esc="custom.phone"/>
+                                </td>
+                                <td>
+                                    <span t-esc="custom.email"/>
+                                </td>
+                                <td>
+                                    <span t-esc="custom.category_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="custom.date_of_birth_date"/>
+                                </td>
+                                <td>
+                                    <span t-esc="custom.your_age"/>
+                                </td>
+                            </tr>
+                            <!--                            </t>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+        <!--                        <img style="border-radius: 100px;"-->
+        <!--                             t-att-src="'/web/image/res.partner/%s/image_1920' % custom.id" alt="Image"/>-->

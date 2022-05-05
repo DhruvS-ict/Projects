@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <!--        <record id="advance_server_action_approve" model="ir.actions.server">-->
+        <!--            <field name="name">approve</field>-->
+        <!--            <field name="type">ir.actions.server</field>-->
+        <!--            <field name="model_id" ref="model_advance_action"/>-->
+        <!--            <field name="binding_model_id" ref="model_advance_action"/>-->
+        <!--            <field name="binding_view_types">tree,form</field>-->
+        <!--            <field name="state">code</field>-->
+        <!--            <field name="code">records.aprrove_advance_action()</field>-->
+        <!--        </record>-->
+
+        <record id="advance_action_search" model="ir.ui.view">
+            <field name="name">advance_action search</field>
+            <field name="model">advance.action</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="advance_users"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="advance_action_tree">
+            <field name="name">advance_action list</field>
+            <field name="model">advance.action</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="advance_users"/>
+                    <field name="state" widget="statusbar" options="{'clickable':'True'}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="advance_action_form">
+            <field name="name">advance_action form</field>
+            <field name="model">advance.action</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="email_send" string="Send Email" type="object" class="btn-info"/>
+                        <field name="state" widget="statusbar" options="{'clickable':True}"/>
+                    </header>
+                    <group>
+                        <field name="advance_users"/>
+                        <field name="from_email" widget="email"/>
+                        <field name="to_email" widget="email"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="advance_action_action_window">
+            <field name="name">Advance Action Window</field>
+            <field name="res_model">advance.action</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="advance action" id="aa_id"/>
+
+        <menuitem name="advance_action" id="advance_action_id" parent="aa_id"/>
+        <menuitem name="advance" id="advance_id" parent="advance_action_id" action="advance_action_action_window"/>
+    </data>
+</odoo>
