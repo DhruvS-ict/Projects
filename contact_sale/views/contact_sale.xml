@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <record id="contact_sale_search" model="ir.ui.view">
+            <field name="name">contact_sale search</field>
+            <field name="model">contact.sale</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="contact_sale_name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="contact_sale_tree">
+            <field name="name">contact_sale list</field>
+            <field name="model">contact.sale</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="contact_sale_name"/>
+                    <field name="contact_id"/>
+                    <field name="sale_order_id"/>
+                    <field name="sales_person"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="contact_sale_form">
+            <field name="name">contact_sale form</field>
+            <field name="model">contact.sale</field>
+            <field name="arch" type="xml">
+                <form>
+                    <h1>
+                        <field name="contact_sale_name"/>
+                    </h1>
+                    <header>
+                        <field name="status" widget="statusbar" options="{'clickable':'True'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="contact_id"/>
+                            <field name="sale_order_id" domain="[('partner_id', '=', contact_id)]"/>
+                            <field name="sales_person"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="contact_sale_action_window">
+            <field name="name">Contact Sale Window</field>
+            <field name="res_model">contact.sale</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="contact_sale" id="cs_id" action="contact_sale_action_window"/>
+
+        <!--        <menuitem name="second_exam" id="second_exam_id" parent="second_exam_action_window" action="second_exam_action_window"/>-->
+
+    </data>
+</odoo>

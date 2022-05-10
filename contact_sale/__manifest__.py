@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "hr referral application",
+    'name': "contact sale",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -17,23 +17,18 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr', 'hr_recruitment'],
+    'depends': ['base', 'sale_management', 'contacts', 'hr', 'website', "invoice_lines"],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'security/security.xml',
-        'views/hr_referral_application.xml',
-        'views/referral_program_form.xml',
-        'views/res_config_settings.xml',
+        'data/contact_sale_data.xml',
+        'views/contact_sale.xml',
 
     ],
-    'assets': {'web.assets_frontend': [
-        'hr_referral_application/static/src/css/referral_program_form.css',
-    ], },
     'application': True,
     "license": "LGPL-3"
 }

@@ -25,6 +25,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/my_account.xml',
         'views/registration_details.xml',
         'views/registration_form.xml',
 

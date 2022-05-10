@@ -32,7 +32,7 @@
                             <label for="country" class="control-label">Country</label>
                             <select class="form-control" name="country">
                                 <t t-foreach="country_details" t-as="part">
-                                    <option t-att-value="part.id" t-esc="part.name"/>
+                                    <option  t-esc="part.name"/>
                                 </t>
                             </select>
                             <br/>

@@ -9,6 +9,7 @@ class HrReferralApplication(models.Model):
     _description = "Created this module."
 
     name = fields.Char(string="Name", required=True)
+    User_id = fields.Many2one('res.users', string="Rseponsible")
     email = fields.Char(string="Email")
     referral_name_id = fields.Many2one('hr.employee', string="Referral Name")
     degree_id = fields.Many2one('hr.recruitment.degree', string="Degree")

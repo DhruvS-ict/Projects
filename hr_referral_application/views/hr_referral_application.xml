@@ -16,6 +16,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="User_id"/>
                     <field name="email"/>
                     <field name="referral_name_id"/>
                     <field name="degree_id"/>
@@ -33,12 +34,14 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="approved_func" string="Approve" type="object" class="oe_info"/>
+                        <button name="approved_func" string="Approve" type="object"
+                                class="oe_info" groups="hr_recruitment.group_hr_recruitment_user"/>
                         <button name="create_application" string="Create Application" type="object" class="oe_success" attrs="{'invisible': [('stages', '!=', 'approved')]}"/>
                         <field name="stages" widget="statusbar" options="{'clickable':'True'}"/>
                     </header>
                     <group>
                         <field name="name"/>
+                        <field name="User_id"/>
                         <field name="email" widget="email"/>
                         <field name="referral_name_id"/>
                         <field name="degree_id"/>

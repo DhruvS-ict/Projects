@@ -59,8 +59,10 @@ class RegistrationOneToMany(models.Model):
                 rec.calculate_difference = year - int(rec.pass_out_year)
             else:
                 rec.calculate_difference = 0
-    #
-    #
+
+
+
+
 
 
 # Backend
