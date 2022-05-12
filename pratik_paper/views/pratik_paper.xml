@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="pratik_paper_search" model="ir.ui.view">
+            <field name="name">pratik_paper search</field>
+            <field name="model">pratik.paper</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pratik_paper_tree">
+            <field name="name">pratik_paper list</field>
+            <field name="model">pratik.paper</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pratik_paper_form">
+            <field name="name">pratik_paper form</field>
+            <field name="model">pratik.paper</field>
+            <field name="arch" type="xml">
+                <form>
+<!--                    <header>-->
+<!--                        <button name="approved_func" string="Approve" type="object"-->
+<!--                                class="oe_info" groups="hr_recruitment.group_hr_recruitment_user"/>-->
+<!--                        <button name="create_application" string="Create Application" type="object" class="oe_success" attrs="{'invisible': [('stages', '!=', 'approved')]}"/>-->
+<!--                        <field name="stages" widget="statusbar" options="{'clickable':'True'}"/>-->
+<!--                    </header>-->
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="pratik_paper_action_window">
+            <field name="name">Pratik Paper Application Window</field>
+            <field name="res_model">pratik.paper</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="pratik paper" id="p_p_id" action="pratik_paper_action_window"/>
+
+        <menuitem name="practical paper" id="practical_id" parent="p_p_id" action="pratik_paper_action_window"/>
+
+<!--        <menuitem name="Referral Program" id="program_id" parent="h_r_a_id" action="pratik_paper_action_window"/>-->
+
+    </data>
+</odoo>

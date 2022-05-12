@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="utsav_paper_search" model="ir.ui.view">
+            <field name="name">utsav_paper search</field>
+            <field name="model">utsav.paper</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="utsav_paper_name"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="utsav_paper_tree">
+            <field name="name">utsav_paper list</field>
+            <field name="model">utsav.paper</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="utsav_paper_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="utsav_paper_form">
+            <field name="name">utsav_paper form</field>
+            <field name="model">utsav.paper</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="utsav_paper_name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="utsav_paper_action_window">
+            <field name="name">Utsav Paper Window</field>
+            <field name="res_model">utsav.paper</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="utsav paper" id="u_p_a_id" action="utsav_paper_action_window"/>
+
+        <menuitem name="paper practical" id="utsav_id" parent="u_p_a_id" action="utsav_paper_action_window"/>
+
+<!--        <menuitem name="Referral Program" id="program_id" parent="h_r_a_id" action="hr_referral_application_action_window"/>-->
+
+    </data>
+</odoo>

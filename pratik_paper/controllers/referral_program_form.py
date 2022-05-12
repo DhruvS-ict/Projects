@@ -9,9 +9,11 @@ class ReferralProgramForm(http.Controller):
     def create_web_form(self, **kw):
         if kw:
             request.env['hr.referral.application'].sudo().create(kw)
+            ref = request.env['hr.referral.application'].search([])
+            for rec in ref:
+                request.env['res.partner'].sudo().create({'name': rec.name,
 
-            request.env['res.partner'].sudo().create({'name': kw.get('name'),
-                                                      'email': kw.get('email')})
+                                                          'email': rec.email})
             print("____________________________", kw)
         referral_name = request.env['hr.employee'].sudo().search([])
         degree_rec = request.env['hr.recruitment.degree'].sudo().search([])

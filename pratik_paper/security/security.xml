@@ -1,0 +1,12 @@
+<odoo>
+    <record model="ir.module.category" id="referral_application_category">
+        <field name="name">Hr Referral Application</field>
+        <field name="description">category of hr_referral_application</field>
+        <field name="sequence">45</field>
+    </record>
+
+    <record id="groups_of_recruitment_users" model="res.groups">
+        <field name="name">Hr Referral App</field>
+        <field name="category_id" ref="referral_application_category"/>
+    </record>
+</odoo>

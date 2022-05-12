@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="total_capacity"/>
+                </field>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="before">
+                    <field name="max_qty_allowed" sum="Max Qty Allowed"/>
+                </xpath>
+                <xpath expr="//field[@name='tax_totals_json']" position="before">
+                    <button name="calculate_the_total_capacity" string="Calculate Total Capacity" type="object" class="btn btn-info"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
