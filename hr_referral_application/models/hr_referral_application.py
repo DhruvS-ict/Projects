@@ -21,6 +21,8 @@ class HrReferralApplication(models.Model):
                                ('cancel', 'cancel')], string="Stages")
 
     def approved_func(self):
+        import pdb;
+        pdb.set_trace()
         print("AAA")
         for rec in self:
             rec.stages = 'approved'

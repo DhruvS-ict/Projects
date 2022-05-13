@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">adding bulk product template into saleorder</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="bulk_product_template_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
