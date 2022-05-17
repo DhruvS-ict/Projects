@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="contracts_history_web_portal" name="My Contracts">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Contracts</t>
+            </t>
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th class="text-left">Start Date</th>
+                        <th class="text-left">End Date</th>
+                        <th class="text-left">Working Schedule</th>
+                        <th class="text-left">Monthly Wage</th>
+                        <th class="text-left">Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="contract_record" t-as="rec" class="text-center">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/individual_details/{{ slug(rec) }}">
+                                <span t-esc="rec.name"/>
+                            </a>
+                        </td>
+                        <td>
+                            <span t-esc="rec.date_start"/>
+                        </td>
+                        <td>
+                            <span t-esc="rec.date_end"/>
+                        </td>
+                        <td>
+                            <span t-esc="rec.resource_calendar_id.name"/>
+                        </td>
+                        <td>
+                            <span t-esc="rec.wage"/>
+                        </td>
+                        <td>
+                            <span t-esc="rec.state" class="badge badge-pill badge-info"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,64 @@
+<odoo>
+    <template id="individual_contract_details_page_layout" name="Contracts Details">
+        <t t-call="portal.portal_layout">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Contracts Details :
+                        <t t-esc="details.name"/>
+                    </t>
+                    <!--                    <t t-set="title"><t t-esc="details.state" class="badge badge-pill badge-info"/></t>-->
+                </t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <t t-esc="details.state" style="box-sizing: border-box;border: solid;"/>
+                        <br/>
+
+                        <br/>
+                        <tr>
+                            <th>
+                                <b>Start Date</b>
+                                :
+                                <t t-esc="details.date_start"/>
+                            </th>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <th>
+                                <b>End Date</b>
+                                :
+                                <t t-esc="details.date_end"/>
+                            </th>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <th>
+                                <b>Working Schedule</b>
+                                :
+                                <t t-esc="details.resource_calendar_id.name"/>
+                            </th>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <th>
+                                <b>Monthly Wage</b>
+                                :
+                                <t t-esc="details.wage"/>
+                            </th>
+                        </tr>
+                    </div>
+                </div>
+                <form enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="project_id" t-att-value="details.id"/>
+                    <input type="file" name="attachment" class="file" multiple="true" data-show-upload="true"
+                           data-show-caption="true" lass="file" data-show-preview="true" id="project.id"
+                           background-color="lightgreen"/>
+                    <button type="submit" name="Upload" style="margin-top:20px;" class="fa fa-upload">
+                        Upload
+                    </button>
+                </form>
+
+            </xpath>
+        </t>
+    </template>
+</odoo>

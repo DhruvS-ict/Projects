@@ -1,0 +1,11 @@
+<odoo>
+    <template id="contracts_account_my_account_id" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Contracts</t>
+                <t t-set="url" t-value="'/contracts_history'"/>
+                <t t-set="placeholder_count" t-value="'contracts_count'"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>
