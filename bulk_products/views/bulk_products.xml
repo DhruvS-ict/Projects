@@ -10,6 +10,42 @@
             </field>
         </record>
 
+                <!-- Bulk Products Kanban View  -->
+        <record id="bulk_products_kanban" model="ir.ui.view">
+            <field name="name">bulk_products kanban</field>
+            <field name="model">bulk.products</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban sample="1">
+                    <field name="bulk_products_image"/>
+                    <field name="bulk_products_name"/>
+                    <field name="bulk_products_email"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                                <field name="bulk_products_image" widget="image" class="o_kanban_image_fill_left"
+                                       options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+                                <div class="oe_kanban_details">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <field name="bulk_products_name" placeholder="Name"/>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li class="o_text_overflow">
+                                            <field name="bulk_products_email"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="bulk_products_tree">
             <field name="name">bulk_products list</field>
             <field name="model">bulk.products</field>
@@ -35,6 +71,7 @@
                     <!--                        <field name="stages" widget="statusbar" options="{'clickable':'True'}"/>-->
                     <!--                    </header>-->
                     <group>
+                        <field name="bulk_products_image" widget="image" class="oe_avatar"/>
                         <field name="bulk_products_name"/>
                         <field name="master_product_id"/>
                         <field name="bulk_products_email" widget="email"/>
@@ -54,7 +91,7 @@
         <record model="ir.actions.act_window" id="bulk_products_action_window">
             <field name="name">Bulk Products Window</field>
             <field name="res_model">bulk.products</field>
-            <field name="view_mode">search,tree,form</field>
+            <field name="view_mode">search,tree,form,kanban</field>
         </record>
 
         <menuitem name="bulk products" id="b_p_a_id" action="bulk_products_action_window"/>

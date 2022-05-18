@@ -47,7 +47,7 @@
                         </tr>
                     </div>
                 </div>
-                <form enctype="multipart/form-data">
+                <form enctype="multipart/form-data" method="POST" action="/file_save" class="s_website_form">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                     <input type="hidden" name="project_id" t-att-value="details.id"/>
                     <input type="file" name="attachment" class="file" multiple="true" data-show-upload="true"

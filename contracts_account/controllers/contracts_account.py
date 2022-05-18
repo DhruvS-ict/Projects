@@ -31,17 +31,34 @@ class ContractsAccount(portal.CustomerPortal):
         if kw:
             print("____________________________________", kw)
             contract = request.env['hr.contract'].browse()
+            print("_____________________________________Contr", contract)
             Attachments = request.env['ir.attachment']
             name = kw.get('attachment').filename
+            print("____________________________________________", name)
             file = kw.get('attachment')
             project_id = kw.get('project_id')
-            attachment_id = Attachments.create({
+            Attachments.create({
                 'name': name,
                 'type': 'binary',
                 'datas': base64.b64encode(file.read()),
                 'res_model': contract._name,
                 'res_id': project_id
             })
-            contract.update({
-                'attachment': [(4, attachment_id.id)],
-            })
+
+        # if request.httprequest.method == 'POST':
+        #     # ...
+        #     # code that creates and fills a dictonary with validated data
+        #     # ...
+        #     new_task = request.env['hr.contract'].sudo().create()
+        #     if 'attachment' in request.params:
+        #         attached_files = request.httprequest.files.getlist('attachment')
+        #         for attachment in attached_files:
+        #             attached_file = attachment.read()
+        #             request.env['ir.attachment'].sudo().create({
+        #                 'name': attachment.filename,
+        #                 'res_model': 'hr.contract',
+        #                 'res_id': new_task.id,
+        #                 'type': 'binary',
+        #                 'datas_fname': attachment.filename,
+        #                 'datas': attached_file.encode('base64'),
+        #             })

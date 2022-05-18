@@ -9,6 +9,7 @@ class BulkProducts(models.Model):
     _description = "Created this module."
     _rec_name = 'bulk_products_name'
 
+    bulk_products_image = fields.Binary(string="Product Image")
     bulk_products_name = fields.Char(string="Name", required=True)
     master_product_id = fields.Many2one('product.template', string="Master Product")
     bulk_products_email = fields.Char(string="Email")
