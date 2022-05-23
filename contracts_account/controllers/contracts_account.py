@@ -28,7 +28,9 @@ class ContractsAccount(portal.CustomerPortal):
 
     @http.route('/file_save', type="http", auth="user", website=True)
     def save_uploaded_file(self, **kw):
-        if kw:
+        multiple_attachments = request.httprequest.files.getlist('attachment')
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~multiple_attachments~~~", multiple_attachments)
+        for upload in multiple_attachments:
             print("____________________________________", kw)
             contract = request.env['hr.contract'].browse()
             print("_____________________________________Contr", contract)
@@ -39,6 +41,7 @@ class ContractsAccount(portal.CustomerPortal):
             project_id = kw.get('project_id')
             Attachments.create({
                 'name': name,
+                'res_name': name,
                 'type': 'binary',
                 'datas': base64.b64encode(file.read()),
                 'res_model': contract._name,

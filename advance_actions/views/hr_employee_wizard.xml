@@ -17,7 +17,7 @@
                 <field name="target">new</field>
         </record>
 
-        <menuitem name="Timesheet report" id="timesheet_id" parent="hr.hr_menu_hr_reports"
-                  action="excel_report_wizard"/>
+<!--        <menuitem name="Timesheet report" id="timesheet_id" parent="hr.hr_menu_hr_reports"-->
+<!--                  action="excel_report_wizard"/>-->
 
 </odoo>

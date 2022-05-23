@@ -2,7 +2,7 @@
     <record id="contact_sale_sequence" model="ir.sequence">
         <field name="name">Generate Name</field>
         <field name="code">contact.sale</field>
-        <field name="prefix">CS-</field>
+        <field name="prefix">CS/2022/00</field>
         <field name="number_increment" eval="1"/>
     </record>
 </odoo>

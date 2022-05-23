@@ -147,7 +147,7 @@
                        <field name="state" widget="statusbar" options="{'clickable':'True'}"/>
                     </header>
                     <sheet>
-                        <group>
+                        <group>F
                             <group>
                                 <field name="name"/>
                                 <field name="rental_type_id"/>

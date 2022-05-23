@@ -1,0 +1,48 @@
+<odoo>
+<data>
+
+  <record id="contact_sale_mail" model="mail.template">
+    <field name="name">Contact Sale: Mail</field>
+    <field name="model_id" ref="contact_sale.model_contact_sale"/>
+    <field name="email_from">{{ (object.salesperson_id.email_formatted)}}</field>
+    <field name="partner_to">{{ object.partner_id.id}}</field>
+    <field name="subject">Contact Sale {{ object.name}}</field>
+    <field name="body_html" type="html">
+      <div style="margin: 10px;">
+        <p style="margin: 5px; font-size: 13px;">
+          Dear,
+          <t t-if="object.partner_id.name">
+            <t t-esc="object.partner_id.name"/>
+          </t>
+          <br/>
+          <br/>
+          Your Sale Order is as per bellow details..
+          <br/><br/>
+
+          <!-- Order table -->
+          <table class="table table-sm o_main_table">
+          <tr>
+            <!-- field details -->
+            <th name="th_product" class="text-left">Product</th>
+          </tr>
+
+          <tr>
+            <td><span t-field="object.sale_order_id.name"/></td>
+          </tr>
+
+          </table>
+
+          <br/><br/>
+          <p style="margin: 5px; font-size: 13px; text-align: right;">
+          Thank you.
+          </p>
+        </p>
+
+      </div>
+    </field>
+    <!-- <field name="report_template" ref="base.action_confirm"/> -->
+    <field name="report_name">contact_sale_{{ (object.name)}}</field>
+  </record>
+
+</data>
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+  <!-- ir.sequence defined here -->
+  <record id="seq_contact_sale" model="ir.sequence">
+    <field name="name">Contact Sale Sequence</field>
+    <field name="code">contact.sale</field>
+    <field name="prefix">CS/%(year)s/</field>
+    <field name="padding">3</field>
+    <field name="company_id" eval="False"/>
+  </record>
+
+  <!-- contact sale list view -->
+  <record model="ir.ui.view" id="contact_sale.list">
+    <field name="name">contact.sale.list</field>
+    <field name="model">contact.sale</field>
+    <field name="arch" type="xml">
+      <tree default_order="id desc" decoration-success="status == 'done'"
+                                    decoration-info="status == 'draft'"
+                                    decoration-danger="status == 'cancel'">
+        <field name="name"/>
+        <field name="partner_id"/>
+        <field name="sale_order_id"/>
+        <field name="salesperson_id"/>
+        <field name="status"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- contact sale form view -->
+  <record model="ir.ui.view" id="contact_sale.form">
+    <field name="name">contact.sale.form</field>
+    <field name="model">contact.sale</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="set_draft" string="Set to Draft"
+                  attrs="{'invisible': [('status', '=', 'draft')]}"
+                  class="btn-primary" type="object"/>
+          <button name="set_in_progress" string="In Progress"
+                  attrs="{'invisible': [('status', '=', 'in_progress')]}"
+                  class="btn-primary" type="object"/>
+          <button name="set_done" string="Done"
+                  attrs="{'invisible': [('status', '=', 'done')]}"
+                  class="btn-primary" type="object"/>
+          <button name="set_cancel" string="Cancel" type="object"
+                  attrs="{'invisible': [('status', '=', 'cancel')]}"/>
+
+          <field name="status" widget="statusbar" statusbar_visible="draft,in_progress,done"/>
+        </header>
+        <sheet>
+          <div>
+            <h1><field name="name"/></h1>
+          </div>
+
+          <group>
+            <field name="partner_id"/>
+            <field name="sale_order_id"
+                   domain="[('partner_id','=?', partner_id),
+                            ('state', '!=', 'cancel')]"
+                   widget="selection"/>
+            <field name="salesperson_id"/>
+          </group>
+
+          <group>
+            <field name="follow_ups_no" readonly="1"/>
+          </group>
+
+          <notebook>
+            <page string="Contact Sale History Lines" name="contact_sale_history_lines">
+              <field name="history_line_ids">
+                <tree string="History Lines" default_order="id desc">
+                  <field name="create_date"/>
+                  <field name="create_uid"/>
+                  <field name="old_state"/>
+                  <field name="new_state"/>
+                  <field name="old_follow_up_no"/>
+                  <field name="new_follow_up_no"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- contact sale search view -->
+  <record model="ir.ui.view" id="contact_sale.search">
+    <field name="name">contact.sale.search</field>
+    <field name="model">contact.sale</field>
+    <field name="arch" type="xml">
+      <search>
+        <filter string="In Draft" name="in_draft" domain="[('status', '=', 'draft')]"/>
+        <filter string="In Progress" name="in_progress" domain="[('status', '=', 'in_progress')]"/>
+        <filter string="Done" name="done" domain="[('status', '=', 'done')]"/>
+        <filter string="Cancelled" name="cancelled" domain="[('status', '=', 'cancel')]"/>
+        <separator/>
+
+        <filter name='contact_group' string='Contact,' context="{'group_by':'partner_id'}"/>
+        <filter name='sale_order_group' string='Sale Order' context="{'group_by':'sale_order_id'}"/>
+        <filter name='status_group' string='Status' context="{'group_by':'status'}"/>
+        <filter name='salesperson_group,' string='Salesperson' context="{'group_by':'salesperson_id'}"/>
+      </search>
+    </field>
+  </record>
+
+</data>
+</odoo>

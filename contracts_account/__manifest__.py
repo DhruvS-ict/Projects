@@ -20,7 +20,7 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'sale_management', 'hr', 'hr_contract'],
 
     # always loaded
     'data': [
@@ -28,6 +28,7 @@
         'views/contracts_account.xml',
         'views/contracts_account_history.xml',
         'views/contract_individual_detail.xml',
+        # 'views/trainees_practical.xml',
     ],
     # 'assets': {'web.assets_frontend': [
     #     'registration_details/static/src/css/registration_details_form.css',

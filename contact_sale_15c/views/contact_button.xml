@@ -1,0 +1,18 @@
+<odoo>
+<data>
+
+  <record model="ir.ui.view" id="contact_sale_view">
+      <field name="name">contact_sale_form</field>
+      <field name="model">res.partner</field>
+      <field name='inherit_id' ref='base.view_partner_form'/>
+      <field name="arch" type="xml">
+        <div name='button_box' position='inside'>
+          <button name="contact_sale_view" icon="fa-globe icon" type="object">
+            <field string="Contact Sale" name="contact_sale_follow_ups" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+          </button>
+        </div>
+      </field>
+    </record>
+
+</data>
+</odoo>

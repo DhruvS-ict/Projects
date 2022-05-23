@@ -57,9 +57,9 @@
                         <button name="browse_orm" string="Browse" type="object" class="btn-info"/>
                     </header>
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button string="client order" type="action" name="%(rental_management.rental_management_action_window)d"
-                                    class="oe_stat_button" icon="fa-list-ol"/>
+<!--                        <div class="oe_button_box" name="button_box">-->
+<!--                            <button string="client order" type="action" name="%(rental_management.rental_management_action_window)d"-->
+<!--                                    class="oe_stat_button" icon="fa-list-ol"/>-->
 <!--                                <div>-->
 <!--                                    <field>-->
 <!--                                        <form>-->
@@ -69,7 +69,7 @@
 <!--                                    </field>-->
 <!--                                </div>-->
 <!--                            </button>-->
-                        </div>
+<!--                        </div>-->
                         <group>
                             <field name="name"/>
                             <field name="name1"/>

@@ -14,12 +14,18 @@
             <field name="name">contact_sale list</field>
             <field name="model">contact.sale</field>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="contact_sale_name"/>
+                <tree decoration-info="status == 'draft'" decoration-warning="status == 'in progress'"
+                      decoration-success="status == 'done'" decoration-danger="status == 'cancel'"
+                      default_order="id desc">
+                    <field name="contact_sale_name" decoration-bf="contact_sale_name"/>
                     <field name="contact_id"/>
                     <field name="sale_order_id"/>
                     <field name="sales_person"/>
-                    <field name="status"/>
+                    <field name="status" widget="badge"
+                           decoration-info="status=='draft'"
+                           decoration-warning="status=='in progress'"
+                           decoration-success="status=='done'"
+                           decoration-danger="status=='cancel'"/>
                 </tree>
             </field>
         </record>
@@ -29,19 +35,43 @@
             <field name="model">contact.sale</field>
             <field name="arch" type="xml">
                 <form>
-                    <h1>
-                        <field name="contact_sale_name"/>
-                    </h1>
                     <header>
-                        <field name="status" widget="statusbar" options="{'clickable':'True'}"/>
+                        <button string="Draft" name="contact_sale_draft" type="object" class="btn-info"/>
+                        <button string="In Progress" name="contact_sale_in_progress" type="object" class="btn-warning"
+                                attrs="{'invisible': [('status', '!=', 'draft')]}"/>
+                        <button string="Done" name="contact_sale_done" type="object" class="btn-success"
+                                attrs="{'invisible': [('status', '!=', 'in progress')]}"/>
+                        <button string="Cancel" name="contact_sale_cancel" type="object" class="btn-danger"
+                                attrs="{'invisible': [('status', '!=', 'done')]}"/>
+                        <field name="status" widget="statusbar" statusbar_visible="draft,in progress,done"/>
                     </header>
                     <sheet>
+                        <h1>
+                            <field name="contact_sale_name"/>
+                        </h1>
                         <group>
                             <field name="contact_id"/>
                             <field name="sale_order_id" domain="[('partner_id', '=', contact_id)]"/>
                             <field name="sales_person"/>
+                            <field name="follow_ups_no"/>
+                            <field name="contact_sale_history_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="contact_sale_id"/>
+                                    <field name="create_date"/>
+                                    <field name="create_uid"/>
+                                    <field name="old_state"/>
+                                    <field name="new_state"/>
+                                    <field name="old_no_follow_ups"/>
+                                    <field name="new_no_follow_ups"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>

@@ -9,7 +9,7 @@ class HrReferralApplication(models.Model):
     _description = "Created this module."
 
     name = fields.Char(string="Name", required=True)
-    User_id = fields.Many2one('res.users', string="Rseponsible")
+    User_id = fields.Many2one('res.users', string="Responsible")
     email = fields.Char(string="Email")
     referral_name_id = fields.Many2one('hr.employee', string="Referral Name")
     degree_id = fields.Many2one('hr.recruitment.degree', string="Degree")
@@ -21,8 +21,8 @@ class HrReferralApplication(models.Model):
                                ('cancel', 'cancel')], string="Stages")
 
     def approved_func(self):
-        import pdb;
-        pdb.set_trace()
+        # import pdb;
+        # pdb.set_trace()
         print("AAA")
         for rec in self:
             rec.stages = 'approved'
