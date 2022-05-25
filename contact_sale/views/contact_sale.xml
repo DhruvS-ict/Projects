@@ -6,6 +6,14 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="contact_sale_name"/>
+                    <filter name="status" domain="[('status', '=', 'draft')]" string="Draft"/>
+                    <filter name="status" domain="[('status', '=', 'in progress')]" string="In Progress"/>
+                    <filter name="status" domain="[('status', '=', 'done')]" string="Done"/>
+                    <filter name="status" domain="[('status', '=', 'cancel')]" string="Cancel"/>
+                    <filter name="status" context="{'group_by': 'contact_id'}" string="Contact"/>
+                    <filter name="status" context="{'group_by': 'sale_order_id'}" string="Sale Order"/>
+                    <filter name="status" context="{'group_by': 'status'}" string="Status"/>
+                    <filter name="status" context="{'group_by': 'sales_person'}" string="Saleperson"/>
                 </search>
             </field>
         </record>
@@ -36,7 +44,8 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button string="Draft" name="contact_sale_draft" type="object" class="btn-info"/>
+                        <button string="Draft" name="contact_sale_draft" type="object" class="btn-info"
+                                attrs="{'invisible': [('status', '!=', 'cancel')]}"/>
                         <button string="In Progress" name="contact_sale_in_progress" type="object" class="btn-warning"
                                 attrs="{'invisible': [('status', '!=', 'draft')]}"/>
                         <button string="Done" name="contact_sale_done" type="object" class="btn-success"
@@ -51,7 +60,7 @@
                         </h1>
                         <group>
                             <field name="contact_id"/>
-                            <field name="sale_order_id" domain="[('partner_id', '=', contact_id)]"/>
+                            <field name="sale_order_id" domain="[('partner_id', '=', contact_id), ('state','!=','cancel')]"/>
                             <field name="sales_person"/>
                             <field name="follow_ups_no"/>
                             <field name="contact_sale_history_lines_ids">
