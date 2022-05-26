@@ -29,37 +29,46 @@ class ContactSale(models.Model):
 
     def contact_sale_draft(self):
         print("DDD")
-        for rec in self:
-            rec.status = 'draft'
+        self.history_lines('draft')
         self.message_post(body=(('%s has been changed') % (self.contact_id.name),
                                 ('%s has been changed') % (self.sale_order_id.name)))
-        self.follow_ups_no += 1
 
     def contact_sale_in_progress(self):
         print("III")
-        for rec in self:
-            rec.status = 'in progress'
+        self.history_lines('in progress')
         self.message_post(body=(('%s has been changed') % (self.contact_id.name),
                                 ('%s has been changed') % (self.sale_order_id.name)))
-        self.follow_ups_no += 1
 
     def contact_sale_done(self):
         print("DoDoDo")
-        for rec in self:
-            rec.status = 'done'
+        self.history_lines('done')
         self.message_post(body=(('%s has been changed') % (self.contact_id.name),
                                 ('%s has been changed') % (self.sale_order_id.name)))
-        self.follow_ups_no += 1
 
     def contact_sale_cancel(self):
         print("CCC")
-        for rec in self:
-            rec.status = 'cancel'
+        self.history_lines('cancel')
         self.message_post(body=(('%s has been changed') % (self.contact_id.name),
                                 ('%s has been changed') % (self.sale_order_id.name)))
+
+    def history_lines(self, state):
+        old_status = self.status
+        print("___________________________________________Old Staus : ", old_status)
+        old_followup_no = self.follow_ups_no
+        print("___________________________________________Old Followup : ", old_followup_no)
         self.follow_ups_no += 1
-
-
+        new_followup_no = self.follow_ups_no
+        print("___________________________________________New Followup : ", new_followup_no)
+        self.status = state
+        new_status = self.status
+        print("___________________________________________New Staus : ", new_status)
+        history = {
+            'old_state': old_status,
+            'new_state': new_status,
+            'old_no_follow_ups': old_followup_no,
+            'new_no_follow_ups': new_followup_no
+        }
+        self.write({'contact_sale_history_lines_ids': [(0, 0, history)]})
 
 
 class ContactSaleHistory(models.Model):

@@ -27,7 +27,7 @@
         'security/ir.model.access.csv',
         'data/contact_sale_data.xml',
         'views/contact_sale.xml',
-
+        'views/res_partner.xml',
     ],
     'application': True,
     "license": "LGPL-3"
