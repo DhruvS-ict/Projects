@@ -198,7 +198,6 @@
                                         <br/>
                                         <br/>
                                         <field name="name"/>
-                                        -
                                         <field name="email"/>
                                     </div>
                                 </div>

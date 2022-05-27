@@ -60,7 +60,8 @@
                         </h1>
                         <group>
                             <field name="contact_id"/>
-                            <field name="sale_order_id" domain="[('partner_id', '=', contact_id), ('state','!=','cancel')]"/>
+                            <field name="sale_order_id"
+                                   domain="[('partner_id', '=', contact_id), ('state','!=','cancel')]"/>
                             <field name="sales_person"/>
                             <field name="follow_ups_no"/>
                             <field name="contact_sale_history_lines_ids">
