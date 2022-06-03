@@ -72,9 +72,9 @@
                     <br/>
                     <center>
                         <h3>Contacts Client Details</h3>
-                        <!--                        <span t-field="custom.image_1920"-->
-                        <!--                              t-options="{'widget': 'image', 'preview_image': 'image_1920'}"-->
-                        <!--                              class="d-flex h-100 justify-content-center align-items-center"/>-->
+<!--                                                <span t-field="custom.image_1920"-->
+<!--                                                      t-options="{'widget': 'image', 'preview_image': 'image_1920'}"-->
+<!--                                                      class="d-flex h-100 justify-content-center align-items-center"/>-->
                     </center>
                     <br/>
                     <table class="table-striped table">

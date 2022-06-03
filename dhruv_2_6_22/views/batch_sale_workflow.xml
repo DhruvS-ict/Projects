@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+        <!--        SEARCH View-->
+        <record id="batch_sale_workflow_search" model="ir.ui.view">
+            <field name="name">batch_sale_workflow search</field>
+            <field name="model">batch.sale.workflow</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="batch_name"/>
+                    <filter name="batch_status" domain="[('batch_status', '=', 'draft')]" string="Draft"/>
+                    <filter name="batch_status" domain="[('batch_status', '=', 'done')]" string="Done"/>
+                    <filter name="batch_status" domain="[('batch_status', '=', 'cancel')]" string="Cancel"/>
+                </search>
+            </field>
+        </record>
+
+        <!--        Tree View-->
+        <record model="ir.ui.view" id="batch_sale_workflow_tree">
+            <field name="name">batch_sale_workflow list</field>
+            <field name="model">batch.sale.workflow</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="batch_status == 'draft'"
+                      decoration-success="batch_status == 'done'"
+                      decoration-danger="batch_status == 'cancel'"
+                      default_order="id desc">
+                    <field name="batch_name"/>
+                    <field name="batch_responsible_id"/>
+                    <field name="batch_operation_type"/>
+                    <field name="batch_operation_date"/>
+                    <field name="batch_status" widget="badge"
+                           decoration-info="batch_status=='draft'"
+                           decoration-success="batch_status=='done'"
+                           decoration-danger="batch_status=='cancel'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        FORM View-->
+        <record model="ir.ui.view" id="batch_sale_workflow_form">
+            <field name="name">batch_sale_workflow form</field>
+            <field name="model">batch.sale.workflow</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Proceed Operation" name="proceed_operation" type="object"
+                                class="btn-success"/>
+                        <button string="Cancel" name="cancel" type="object" class="btn-danger"
+                                attrs="{'invisible': [('batch_status', '!=', 'done')]}"/>
+                        <button string="Set to Draft" name="set_to_draft" type="object" class="btn-warning"
+                                attrs="{'invisible': [('batch_status', '!=', 'cancel')]}"/>
+                        <button string="Done" name="done" type="object" class="btn-info"
+                                attrs="{'invisible': [('batch_status', '!=', 'draft')]}"/>
+                        <field name="batch_status" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="batch_name"/>
+                        </h1>
+                        <group>
+                            <field name="batch_responsible_id"
+                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
+                            <field name="batch_operation_type"
+                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
+                            <field name="batch_customer_id"
+                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
+                            <field name="batch_sale_order_ids" domain="[('user_id', '=', batch_responsible_id)]"
+                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
+                            <field name="batch_operation_date"
+                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--        Main Action-->
+        <record model="ir.actions.act_window" id="batch_sale_workflow_action_window">
+            <field name="name">Batch Sale Workflow Window</field>
+            <field name="res_model">batch.sale.workflow</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="batch_sale_workflow" id="bsw_id" action="batch_sale_workflow_action_window"/>
+    </data>
+</odoo>

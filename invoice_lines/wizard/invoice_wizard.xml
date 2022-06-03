@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="invoice_wizard_form">
+            <field name="name">invoice_wizard form</field>
+            <field name="model">invoice.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Wizard">
+                    <group>
+                        <group>
+                            <field name="wizard_name_id"/>
+                            <field name="wizard_email"/>
+                            <field name="wizard_salary"/>
+                        </group>
+                        <group>
+                            <field name="wizard_summary"/>
+                            <field name="wizard_stages"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="invoice_wizard_submit" string="Save" type="object"
+                                class="btn-success"/>
+                        <button string="cancel" class="btn-info" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="invoice_wizard_popup">
+            <field name="name">Invoice Popup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="invoice_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+        <!--  actions  -->
+    </data>
+</odoo>

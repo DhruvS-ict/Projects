@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="contact_form_menu" model="website.menu">
+        <field name="name">Contacts</field>
+        <field name="url">/contacts</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="contact_form" name="Create Record">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form" action="/manage/contact" method="POST">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="contact_id" t-att-value="(contact) and contact.id" />
+                            <div class="row">
+                                <div t-attf-class="form-group col-lg-12">
+                                    <label class="col-form-label" for="name">Name</label>
+                                    <input type="text" required="True" name="name" t-attf-class="form-control" t-att-value="(contact) and contact.name or ''" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="reset" class="btn btn-danger" role="button">
+                                        Reset
+                                    </button>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button type="submit" class="btn btn-primary" role="button">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

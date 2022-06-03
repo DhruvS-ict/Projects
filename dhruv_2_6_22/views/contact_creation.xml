@@ -1,0 +1,103 @@
+<odoo>
+    <record id="contact_creation_web_page_menu" model="website.menu">
+        <field name="name">Contact Creation</field>
+        <field name="url">/contact_creation</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="contact_creation_form" name="Contact Form">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <form role="form" action="/contact_creation/contact_creation_thankyou" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <section>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="contact_creation_your_name" class="control-label">Your Name*</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="contact_creation_your_name"
+                                               id="contact_creation_your_name"
+                                               t-att-value="contact_creation_your_name" required="required"
+                                               class="focused_inputs"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="contact_creation_your_email" class="control-label">Your Email*
+                                        </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="contact_creation_your_email"
+                                               t-att-value="contact_creation_your_email"
+                                               id="contact_creation_your_email" class="focused_inputs"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="contact_creation_phone_number" class="control-label">Phone Number
+                                        </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" name="contact_creation_phone_number"
+                                               t-att-value="contact_creation_phone_number"
+                                               id="contact_creation_phone_number"
+                                               class="focused_inputs"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="contact_creation_image" class="control-label">Image</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="file" name="contact_creation_image"
+                                               t-att-value="contact_creation_image"
+                                               id="contact_creation_image" class="focused_inputs" multiple="true"
+                                               data-show-upload="true" data-show-caption="true" data-show-preview="true"
+                                               accept="contact_creation_image/*"/>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                        </section>
+                        <div class="submit">
+                            <button class="color" type="submit">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="contact_creation_thanks_page" model="website.page">
+        <field name="name">ThankYou</field>
+        <field name="type">qweb</field>
+        <field name="website_published">True</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="dhruv_2_6_22.contact_creation_thanks_page">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>ThankYou !</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                        Your details has been sent successfully created in Contact.
+                                    </div>
+                                    <p>
+                                        Kindly check in Contact.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

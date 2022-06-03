@@ -4,4 +4,5 @@ from . import account_move
 from . import invoice_lines
 from . import account_move_line
 from . import res_partner
+from . import res_config_setting
 

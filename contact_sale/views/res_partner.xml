@@ -6,6 +6,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <!--                <xpath expr="/form/sheet/div[hasclass('oe_button_box')]" position="inside">-->
+<!--                ### Smart Button ###-->
                 <div class="oe_button_box" name="button_box">
                     <button type="object" name="test" class="oe_stat_button" icon="fa-list-ol">
                         <div class="o_field_widget o_stat_info">

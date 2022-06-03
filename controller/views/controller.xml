@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="contacts_list" name="Contacts Website">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="container" style="display: block;">
+                    <div class="s_allow_columns">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h1 class="contact_list_title">
+                                Contact List
+                            </h1>
+                            <a type="button" class="btn btn-primary" href="/manage/contact">
+                                Add Contact
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row"
+                         style="align-items: center;
+                      border-style: ridge;
+                      padding-top: 5px;
+                      padding-right: 5px;
+                      padding-bottom: 5px;
+                      padding-left: 5px;"
+                         t-foreach="contacts"
+                         t-as="contact">
+                        <div class="col-2">
+                            <img t-if="contact.image_1920"
+                                 t-att-src="image_data_uri(contact.image_1920)"
+                                 style="width: 30mm; height: 30mm; padding-right: 5px;"
+                                 class="float-left"
+                                 alt="Logo"/>
+                        </div>
+
+                        <div class="col-3" style="padding-right: 5px;">
+                            <t t-esc="contact.name"/>
+                        </div>
+
+                        <div class="col-2" style="padding-right: 5px;">
+                            <t t-esc="contact.phone"/>
+                        </div>
+
+                        <div class="col-3" style="padding-right: 5px;">
+                            <t t-esc="contact.email"/>
+                        </div>
+
+                        <div class="col-2" style="padding-right: 5px;">
+                            <a t-attf-href="/manage/contact/{{slug(contact)}}">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

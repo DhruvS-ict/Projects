@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="xls_rent_wizard" model="ir.ui.view">
+     <field name="name">salary.report.wizard</field>
+     <field name="model">xls.rent</field>
+     <field name="arch" type="xml">
+        <form string="Excel Report">
+           <field name="state" invisible="1"/>
+           <div states="get">
+              <group>
+                 <field name="summary_data" colspan="4" invisible="1"/>
+                 <field name="excel_file" excel_file="summary_data" colspan="4"/>
+              </group>
+           </div>
+           <div states="choose">
+              <group>
+                 <group>
+                     <field name="s_date" />
+                    <field name="e_date" />
+                    <field name="employee_id" required="1"/>
+                 </group>
+              </group>
+           </div>
+           <footer states="choose">
+              <button string="Generate Report"
+                           class="btn-primary"
+                           name="action_xlwt_report"
+                           type="object"/>
+              <button string="Cancel"
+                           class="btn-default"
+                           special="cancel" />
+           </footer>
+           <footer states="get">
+              <button special="cancel" string="Cancel" class="oe_highlight" />
+           </footer>
+        </form>
+     </field>
+  </record>
+
+  <record id="xls_rent_xlwt" model="ir.actions.act_window">
+     <field name="name">Excel Report</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">xls.rent</field>
+     <field name="view_mode">form</field>
+     <field name="view_id" ref="xls_rent_wizard"/>
+     <field name="target">new</field>
+  </record>
+
+<!--  <menuitem id="child_menu_report"-->
+<!--             name="XLWT Report"-->
+<!--             parent="your_module_name.parent_menu_salary_advance"-->
+<!--             action="xls_rent_xlwt"/>-->
+</odoo>
