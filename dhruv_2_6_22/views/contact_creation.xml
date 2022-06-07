@@ -9,7 +9,8 @@
         <t t-call="website.layout">
             <div class="oe_structure">
                 <div class="container">
-                    <form role="form" action="/contact_creation/contact_creation_thankyou" method="POST">
+                    <form role="form" action="/contact_creation/contact_creation_thankyou" method="POST"
+                          enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         <section>
                             <div class="form-group">
@@ -57,16 +58,14 @@
                                     <div class="col-75">
                                         <input type="file" name="contact_creation_image"
                                                t-att-value="contact_creation_image"
-                                               id="contact_creation_image" class="focused_inputs" multiple="true"
-                                               data-show-upload="true" data-show-caption="true" data-show-preview="true"
-                                               accept="contact_creation_image/*"/>
+                                               id="contact_creation_image" class="focused_inputs"/>
                                     </div>
                                 </div>
                                 <br/>
                             </div>
                         </section>
                         <div class="submit">
-                            <button class="color" type="submit">SUBMIT</button>
+                            <button class="btn-primary" type="submit">SUBMIT</button>
                         </div>
                     </form>
                 </div>

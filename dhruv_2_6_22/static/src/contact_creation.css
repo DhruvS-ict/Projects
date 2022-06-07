@@ -16,6 +16,6 @@
   margin-top: 6px;
 }
 
-.color {
-  background-color:#a72d3d73;
+.btn-primary {
+  background-color:#a72d3d73 !important;
 }

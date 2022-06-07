@@ -43,13 +43,11 @@
                 <form>
                     <header>
                         <button string="Proceed Operation" name="proceed_operation" type="object"
-                                class="btn-success"/>
+                                class="btn-success" attrs="{'invisible': [('batch_status', '!=', 'draft')]}"/>
                         <button string="Cancel" name="cancel" type="object" class="btn-danger"
                                 attrs="{'invisible': [('batch_status', '!=', 'done')]}"/>
                         <button string="Set to Draft" name="set_to_draft" type="object" class="btn-warning"
                                 attrs="{'invisible': [('batch_status', '!=', 'cancel')]}"/>
-                        <button string="Done" name="done" type="object" class="btn-info"
-                                attrs="{'invisible': [('batch_status', '!=', 'draft')]}"/>
                         <field name="batch_status" widget="statusbar" clickable="True"/>
                     </header>
                     <sheet>
@@ -60,9 +58,10 @@
                             <field name="batch_responsible_id"
                                    attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
                             <field name="batch_operation_type"
-                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
+                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}" visible="true"/>
                             <field name="batch_customer_id"
-                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
+                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])],
+                                   'invisible': [('batch_operation_type', '!=', 'merge')], 'required': [('batch_operation_type', '=', 'merge')]}"/>
                             <field name="batch_sale_order_ids" domain="[('user_id', '=', batch_responsible_id)]"
                                    attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
                             <field name="batch_operation_date"
