@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bulk_product_web_menu" model="website.menu">
+        <field name="name">Bulk Product</field>
+        <field name="url">/product_list</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="bulk_product_website_record_list" name="Products">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Products</t>
+            </t>
+            <div class="s_allow_columns">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>
+                        Bulk Product List
+                    </h1>
+                    <a type="button" class="btn btn-primary" href="/manage/bulk_products">
+                        Add Product
+                    </a>
+                </div>
+            </div>
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th class="text-left">Master Product</th>
+                        <th class="text-left">Email</th>
+                    </tr>
+                </thead>
+                <t t-foreach="bulk_record" t-as="bulk" class="text-center">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/product_list/{{ slug(bulk) }}">
+                                <span t-esc="bulk.bulk_products_name"/>
+                            </a>
+                        </td>
+                        <td>
+                            <span t-esc="bulk.master_product_id.name"/>
+                        </td>
+                        <td>
+                            <span t-esc="bulk.bulk_products_email"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

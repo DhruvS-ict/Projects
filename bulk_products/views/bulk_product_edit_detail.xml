@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="bulk_product_edit" name="Create Bulk Product">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form" action="/manage/bulk_products" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="bulk_product_id" t-att-value="(bulk_price) and bulk_price.id"/>
+                            <div class="row">
+                                <div t-attf-class="form-group col-lg-12">
+                                    <label class="col-form-label" for="bulk_products_name">Name</label>
+                                    <input type="text" required="True" name="bulk_products_name"
+                                           t-attf-class="form-control"
+                                           t-att-value="(bulk_price) and bulk_price.bulk_products_name or ''"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-12">
+                                    <label class="col-form-label" for="master_product_id">Master Product</label>
+                                    <select class="form-control" name="master_product_id.id"
+                                            t-att-value="(bulk_price) and bulk_price.master_product_id or ''">
+                                        <t t-foreach="master" t-as="mas">
+                                            <option t-attf-value="mas.id" t-esc="mas.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div t-attf-class="form-group col-lg-12">
+                                    <label class="col-form-label" for="bulk_products_email">Email</label>
+                                    <input type="text" required="True" name="bulk_products_email"
+                                           t-attf-class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="reset" class="btn btn-danger" role="button">
+                                        Reset
+                                    </button>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button type="submit" class="btn btn-primary" role="button">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,56 @@
+<odoo>
+    <template id="bulk_product_website_list_detail" name="Bulk Products Details">
+        <t t-call="portal.portal_layout">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Bulk Products Details :
+                        <t t-esc="bulk_detail.bulk_products_name"/>
+                    </t>
+                </t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <t t-foreach="bulk_detail" t-as="rec" class="text-center">
+                            <tr>
+                                <th>
+                                    <b>Master Product</b>
+                                    :
+                                    <t t-esc="rec.master_product_id.name"/>
+                                </th>
+                            </tr>
+                            <br/>
+                            <tr>
+                                <th>
+                                    <b>Email</b>
+                                    :
+                                    <t t-esc="rec.bulk_products_email"/>
+                                </th>
+                            </tr>
+                            <br/>
+                            <tr>
+                                <th>
+                                    <b>User</b>
+                                    :
+                                    <t t-esc="rec.bulk_products_user_id.name"/>
+                                </th>
+                            </tr>
+                            <br/>
+                            <tr>
+                                <a t-attf-href="/manage/bulk_products/{{slug(rec)}}">
+                                    <button type="submit" class="btn btn-primary" role="button">
+                                        Edit
+                                    </button>
+                                </a>
+                            </tr>
+                        </t>
+                    </div>
+                </div>
+                <!--                <div class="col-6 text-right">-->
+                <!--                    <button type="submit" class="btn btn-primary" role="button"-->
+                <!--                            t-attf-href="/manage/bulk_products/{{ slug(bulk_detail) }}">-->
+                <!--                        Edit-->
+                <!--                    </button>-->
+                <!--                </div>-->
+            </xpath>
+        </t>
+    </template>
+</odoo>
