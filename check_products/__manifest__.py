@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 {
-    'name': "dhruv_2_6_22",
+    'name': "check products",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -19,20 +20,15 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'contacts', 'website', 'sale_management', 'mail'],
+    'depends': ['base', 'sale_management', 'website'],
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
-        'data/batch_sale_workflow_data.xml',
-        'wizard/batch_wizard.xml',
-        'views/contact_creation.xml',
-        'views/batch_sale_workflow.xml',
+        'views/check_products_form.xml',
+        'views/check_products_list.xml',
     ],
     'assets': {'web.assets_frontend': [
-        'dhruv_2_6_22/static/src/contact_creation.css',
+        'check_products/static/src/check_products.css',
     ], },
-    'application': True,
     "license": "LGPL-3"
 }
-# -*- coding: utf-8 -*-

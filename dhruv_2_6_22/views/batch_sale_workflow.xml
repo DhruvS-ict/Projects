@@ -42,8 +42,8 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button string="Proceed Operation" name="proceed_operation" type="object"
-                                class="btn-success" attrs="{'invisible': [('batch_status', '!=', 'draft')]}"/>
+                        <button string="Proceed Operation" name="%(batch_workflow_action_wizard)d"
+                                type="action" class="btn-success" attrs="{'invisible': [('batch_status','!=','draft')]}"/>
                         <button string="Cancel" name="cancel" type="object" class="btn-danger"
                                 attrs="{'invisible': [('batch_status', '!=', 'done')]}"/>
                         <button string="Set to Draft" name="set_to_draft" type="object" class="btn-warning"
@@ -62,9 +62,8 @@
                             <field name="batch_customer_id"
                                    attrs="{'readonly':[('batch_status','in',['done','cancel'])],
                                    'invisible': [('batch_operation_type', '!=', 'merge')], 'required': [('batch_operation_type', '=', 'merge')]}"/>
-                            <field name="batch_sale_order_ids" domain="[('user_id', '=', batch_responsible_id)]"
-                                   attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
-                            <field name="batch_operation_date"
+                            <field name="batch_sale_order_ids" attrs="{'readonly':[('batch_status','in',['done','cancel'])]}" context="{'batch_operation_type': batch_operation_type}"/>
+                            <field name="batch_operation_date" widget="float_time"
                                    attrs="{'readonly':[('batch_status','in',['done','cancel'])]}"/>
                         </group>
                     </sheet>

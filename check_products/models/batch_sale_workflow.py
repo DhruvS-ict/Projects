@@ -33,21 +33,22 @@ class BatchSaleWorkFlow(models.Model):
         vals['batch_name'] = self.env['ir.sequence'].next_by_code("batch.sale.workflow")
         return super(BatchSaleWorkFlow, self).create(vals)
 
-
-        # for rec in self:
-        #     rec.batch_status = 'done'
-        # self.batch_sale_order_ids.write({
-        #     'date_order': self.batch_operation_date
-        # })
-        # # sale_env = self.env['sale.order']
-        # if self.batch_operation_type in 'confirm':
-        #     self.batch_sale_order_ids.write({'state': 'sale'})
-        # elif self.batch_operation_type in 'cancel':
-        #     self.batch_sale_order_ids.write({'state': 'cancel'})
-        # elif self.batch_operation_type in 'merge':
-        #     self.batch_sale_order_ids.write({'state': 'cancel'})
-        #     self.env['sale.order'].create({'partner_id': self.batch_customer_id.id,
-        #                                    'order_line': self.batch_sale_order_ids.order_line})
+    def proceed_operation(self):
+        print("PPP")
+        for rec in self:
+            rec.batch_status = 'done'
+        self.batch_sale_order_ids.write({
+            'date_order': self.batch_operation_date
+        })
+        # sale_env = self.env['sale.order']
+        if self.batch_operation_type in 'confirm':
+            self.batch_sale_order_ids.write({'state': 'sale'})
+        elif self.batch_operation_type in 'cancel':
+            self.batch_sale_order_ids.write({'state': 'cancel'})
+        elif self.batch_operation_type in 'merge':
+            self.batch_sale_order_ids.write({'state': 'cancel'})
+            self.env['sale.order'].create({'partner_id': self.batch_customer_id.id,
+                                           'order_line': self.batch_sale_order_ids.order_line})
 
     def cancel(self):
         print("CCC")
@@ -59,23 +60,23 @@ class BatchSaleWorkFlow(models.Model):
         for rec in self:
             rec.batch_status = 'draft'
 
-    # @api.onchange('batch_operation_type', 'batch_responsible_id')
-    # def confirm_state(self):
-    #     """This is onchange api model."""
-    #     if self.batch_operation_type:
-    #         if self.batch_operation_type == 'confirm':
-    #             domain = [('state', '=', ['draft', 'sent']),
-    #                       ('user_id', '=', self.batch_responsible_id.id)]
-    #             # return {'domain': {'batch_sale_order_ids': domain}}
-    #         elif self.batch_operation_type in 'cancel':
-    #             domain = [('state', '=', ['draft', 'sent', 'sale']),
-    #                       ('user_id', '=', self.batch_responsible_id.id)]
-    #             # return {'domain': {'batch_sale_order_ids': domain}}
-    #         elif self.batch_operation_type in 'merge':
-    #             domain = [('state', '=', ['draft', 'sent']),
-    #                       ('user_id', '=', self.batch_responsible_id.id),
-    #                       ('partner_id', '=', self.batch_customer_id.id)]
-    #         return {'domain': {'batch_sale_order_ids': domain}}
+    @api.onchange('batch_operation_type', 'batch_responsible_id')
+    def confirm_state(self):
+        """This is onchange api model."""
+        if self.batch_operation_type:
+            if self.batch_operation_type == 'confirm':
+                domain = [('state', '=', ['draft', 'sent']),
+                          ('user_id', '=', self.batch_responsible_id.id)]
+                # return {'domain': {'batch_sale_order_ids': domain}}
+            elif self.batch_operation_type in 'cancel':
+                domain = [('state', '=', ['draft', 'sent', 'sale']),
+                          ('user_id', '=', self.batch_responsible_id.id)]
+                # return {'domain': {'batch_sale_order_ids': domain}}
+            elif self.batch_operation_type in 'merge':
+                domain = [('state', '=', ['draft', 'sent']),
+                          ('user_id', '=', self.batch_responsible_id.id),
+                          ('partner_id', '=', self.batch_customer_id.id)]
+            return {'domain': {'batch_sale_order_ids': domain}}
 
     # @api.onchange('batch_operation_type', 'batch_responsible_id')
     # @api.model

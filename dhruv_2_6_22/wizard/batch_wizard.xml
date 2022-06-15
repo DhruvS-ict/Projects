@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="batch_wizard_form">
+            <field name="name">batch_wizard form</field>
+            <field name="model">batch.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Batch Wizard">
+                    <group>
+                        <field name="batch_order_ids">
+                            <tree editable="bottom">
+                                <field name="batch_order_product_id"/>
+                                <field name="batch_order_name"/>
+                                <field name="batch_order_unit_price"/>
+                                <field name="batch_order_quantity"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+<!--                        <button name="create_so" string="Create SO" type="object"-->
+<!--                                class="btn-warning"/>-->
+                        <button string="cancel" class="btn-info" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="batch_workflow_action_wizard">
+            <field name="name">Batch wizard Popup</field>
+            <field name="res_model">batch.wizard</field>
+            <field name="view_id" ref="batch_wizard_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

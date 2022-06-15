@@ -2,4 +2,3 @@
 
 from . import batch_sale_workflow
 from . import res_partner
-from . import sale_order

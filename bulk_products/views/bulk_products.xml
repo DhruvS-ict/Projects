@@ -10,7 +10,7 @@
             </field>
         </record>
 
-                <!-- Bulk Products Kanban View  -->
+        <!-- Bulk Products Kanban View  -->
         <record id="bulk_products_kanban" model="ir.ui.view">
             <field name="name">bulk_products kanban</field>
             <field name="model">bulk.products</field>
@@ -64,16 +64,18 @@
             <field name="model">bulk.products</field>
             <field name="arch" type="xml">
                 <form>
-                    <!--                    <header>-->
-                    <!--                        <button name="approved_func" string="Approve" type="object"-->
-                    <!--                                class="oe_info" groups="hr_recruitment.group_hr_recruitment_user"/>-->
-                    <!--                        <button name="create_application" string="Create Application" type="object" class="oe_success" attrs="{'invisible': [('stages', '!=', 'approved')]}"/>-->
-                    <!--                        <field name="stages" widget="statusbar" options="{'clickable':'True'}"/>-->
-                    <!--                    </header>-->
+                    <header>
+                        <!--                        <button name="approved_func" string="Approve" type="object"-->
+                        <!--                                class="oe_info" groups="hr_recruitment.group_hr_recruitment_user"/>-->
+<!--                        <button name="btn_whatsapp" string="Whatsapp" type="object" icon="fa-whatsapp"-->
+<!--                                class="oe_highlight" data-hotkey="w"/>-->
+                        <!--                        <field name="stages" widget="statusbar" options="{'clickable':'True'}"/>-->
+                    </header>
                     <group>
                         <field name="bulk_products_image" widget="image" class="oe_avatar"/>
                         <field name="bulk_products_name"/>
                         <field name="master_product_id"/>
+                        <field name="bulk_products_phone" widget="phone"/>
                         <field name="bulk_products_email" widget="email"/>
                         <field name="bulk_products_user_id"/>
                         <field name="bulk_products_ids">
