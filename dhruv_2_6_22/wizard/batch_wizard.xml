@@ -16,8 +16,8 @@
                         </field>
                     </group>
                     <footer>
-<!--                        <button name="create_so" string="Create SO" type="object"-->
-<!--                                class="btn-warning"/>-->
+                        <button name="create_new_sale_order" string="Merge" type="object"
+                                class="btn-warning"/>
                         <button string="cancel" class="btn-info" special="cancel"/>
                     </footer>
                 </form>
@@ -25,7 +25,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="batch_workflow_action_wizard">
-            <field name="name">Batch wizard Popup</field>
+            <field name="name">Batch wizard</field>
             <field name="res_model">batch.wizard</field>
             <field name="view_id" ref="batch_wizard_form"/>
             <field name="view_mode">form</field>

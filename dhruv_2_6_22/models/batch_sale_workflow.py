@@ -25,7 +25,7 @@ class BatchSaleWorkFlow(models.Model):
     """"""
     batch_sale_order_ids = fields.Many2many('sale.order', 'batch_sale_workflow_sale_order',
                                             'batch_sale_workflow_id', 'sale_order_id', string="Sale Order")
-    batch_operation_date = fields.Float(string="Operation Date")
+    batch_operation_date = fields.Datetime(string="Operation Date")
 
     @api.model
     def create(self, vals):
@@ -33,12 +33,22 @@ class BatchSaleWorkFlow(models.Model):
         vals['batch_name'] = self.env['ir.sequence'].next_by_code("batch.sale.workflow")
         return super(BatchSaleWorkFlow, self).create(vals)
 
-
-        # for rec in self:
-        #     rec.batch_status = 'done'
-        # self.batch_sale_order_ids.write({
-        #     'date_order': self.batch_operation_date
-        # })
+    def proceed_operation_button(self):
+        for rec in self:
+            rec.batch_status = 'done'
+        self.batch_sale_order_ids.write({
+            'date_order': self.batch_operation_date
+        })
+        if self.batch_operation_type == 'merge':
+            action = {
+                "name": "Batch wizard",
+                "type": "ir.actions.act_window",
+                "view_mode": "form",
+                "res_model": "batch.wizard",
+                "target": "new",
+                # "context": {'active_ids': records.ids}
+            }
+            return action
         # # sale_env = self.env['sale.order']
         # if self.batch_operation_type in 'confirm':
         #     self.batch_sale_order_ids.write({'state': 'sale'})
