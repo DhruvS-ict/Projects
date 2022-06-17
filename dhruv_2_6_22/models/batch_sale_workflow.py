@@ -19,6 +19,10 @@ class BatchSaleWorkFlow(models.Model):
                                             required=True)
     """"""
     batch_customer_id = fields.Many2one('res.partner', string="Customer")
+    # batch_customer_tags_ids = fields.Many2many('res.partner.category', string="Customer Tags",
+    #                                            related='batch_customer_id.category_id')
+    batch_tags_category = fields.Many2many('res.partner.category', string="Batch Tags",
+                                           related="batch_customer_id.category_id", readonly=False)
     """"""
     batch_status = fields.Selection([('draft', 'Draft'), ('done', 'Done'),
                                      ('cancel', 'Cancel')], string="status", default='draft')

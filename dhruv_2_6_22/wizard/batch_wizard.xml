@@ -31,5 +31,33 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
+
+<!--        <record model="ir.ui.view" id="tag_wizard_form">-->
+<!--            <field name="name">tag_wizard form</field>-->
+<!--            <field name="model">tag.wizard</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Batch Wizard">-->
+<!--                    <group>-->
+<!--                        <form>-->
+<!--                            <field name="tag_customer_id"/>-->
+<!--                            <field name="tag_customer_tags_ids" widget="many2many_tags"/>-->
+<!--                        </form>-->
+<!--                    </group>-->
+<!--                    <footer>-->
+<!--                        &lt;!&ndash;                        <button name="create_new_sale_order" string="Merge" type="object"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                class="btn-warning"/>&ndash;&gt;-->
+<!--                        <button string="cancel" class="btn-info" special="cancel"/>-->
+<!--                    </footer>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record model="ir.actions.act_window" id="tag_workflow_action_wizard">-->
+<!--            <field name="name">Customer Tag wizard</field>-->
+<!--            <field name="res_model">tag.wizard</field>-->
+<!--            <field name="view_id" ref="tag_wizard_form"/>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
     </data>
 </odoo>

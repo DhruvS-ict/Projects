@@ -38,7 +38,7 @@ class BatchWizard(models.TransientModel):
         """And active_ids is used to fetch current record in batch_sale_workflow and get 
         customer_id from active record."""
         list_d = []
-        batch_env = self.env['batch.sale.workflow']
+        batch_env = self.env['batch.sale.workflow'].browse(self.env.context.get('active_id'))
         print("_________________________________???___________batch_env : ", batch_env.batch_customer_id.id)
         if self.batch_order_ids:
             for batch_line in self.batch_order_ids:
@@ -52,6 +52,8 @@ class BatchWizard(models.TransientModel):
             rec = batch_env.browse(self.env.context.get('active_ids'))
             self.env['sale.order'].create({'partner_id': rec.batch_customer_id.id, 'order_line': list_d})
 
+        batch_env.batch_sale_order_ids.action_cancel()
+
 
 class BatchOneToMany(models.TransientModel):
     """This class is created for one to many field."""
@@ -62,3 +64,14 @@ class BatchOneToMany(models.TransientModel):
     batch_order_name = fields.Text(string="Description")
     batch_order_unit_price = fields.Float(string="Unit Price", related='batch_order_product_id.list_price')
     batch_order_quantity = fields.Float(string="Quantity")
+
+
+# class CustomerTagWizard(models.TransientModel):
+#     """This class is for wizard object."""
+#     _name = 'tag.wizard'
+#     _description = 'Customer Tag Wizard'
+#
+#     tag_customer_id = fields.Many2one('batch.sale.workflow', string="Customer",
+#                                       related="tag_customer_id.batch_customer_id")
+#     tag_customer_tags_ids = fields.Many2many('res.partner.category', string="Customer Tags",
+#                                              related='tag_customer_id.category_id')
