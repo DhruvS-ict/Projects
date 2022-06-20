@@ -1,0 +1,21 @@
+.col-25 {
+  float: left;
+  width: 15%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.submit {
+  float: right;
+  width: 86%;
+  margin-top: 6px;
+}
+
+.btn-primary {
+  background-color:#a72d3d73 !important;
+}

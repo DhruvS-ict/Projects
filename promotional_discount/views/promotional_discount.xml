@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <!--        Tree View-->
+        <record model="ir.ui.view" id="promotional_discount_tree">
+            <field name="name">promotional_discount list</field>
+            <field name="model">promotional.discount</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="discount_type"/>
+                    <field name="discount"/>
+                    <field name="minimum_order_amount"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        FORM View-->
+        <record model="ir.ui.view" id="promotional_discount_form">
+            <field name="name">promotional_discount form</field>
+            <field name="model">promotional.discount</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!--                        <button string="Proceed Operation" name="proceed_operation_button"-->
+                        <!--                                type="object" class="btn-success" attrs="{'invisible': [('batch_status','!=','draft')]}"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="discount_type" class="oe_inline"/>
+                            <field name="currency_id" invisible="0"/>
+                            <label for="discount"/>
+                            <div>
+                                <field name="fixed_amount"
+                                       attrs="{'required': [('discount_type', '=', 'fixed')],
+                                       'invisible': [('discount_type', '!=','fixed')]}"
+                                       class="oe_inline"/>
+                                <field name="discount"
+                                       attrs="{'required': [('discount_type', '=', 'percent')],
+                                       'invisible': [('discount_type', '!=', 'percent')]}"
+                                       class="oe_inline"/>
+                                <span attrs="{'invisible': [('discount_type', '=', 'fixed')]}"
+                                      class="oe_inline">%</span>
+                            </div>
+                            <field name="minimum_order_amount"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--        Main Action-->
+        <record model="ir.actions.act_window" id="promotional_discount_action_window">
+            <field name="name">Promotional Discount Window</field>
+            <field name="res_model">promotional.discount</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+
+        <menuitem name="promotional_discount" id="pd_id" action="promotional_discount_action_window"/>
+    </data>
+</odoo>
