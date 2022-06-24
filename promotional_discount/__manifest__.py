@@ -23,9 +23,12 @@
 
     # always loaded
     'data': [
+        'data/promotional_discount_data.xml',
         'security/ir.model.access.csv',
-        # 'data/batch_sale_workflow_data.xml',
+        'security/security.xml',
+        'views/sale_order.xml',
         'views/promotional_discount.xml',
+        'views/promotional_res_config_settings.xml'
     ],
     'application': True,
     "license": "LGPL-3"

@@ -1,0 +1,8 @@
+<odoo>
+    <record id="promotional_discount_sequence" model="product.product">
+        <field name="name">Promotion</field>
+        <field name="taxes_id" eval="False"/>
+        <field name="detailed_type">service</field>
+        <field name="default_code">DISC</field>
+    </record>
+</odoo>

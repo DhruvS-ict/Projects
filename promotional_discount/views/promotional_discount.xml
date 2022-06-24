@@ -6,9 +6,10 @@
             <field name="model">promotional.discount</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name"/>
+                    <field name="product_name"/>
                     <field name="discount_type"/>
                     <field name="discount"/>
+<!--                    <field name="fixed_amount"/>-->
                     <field name="minimum_order_amount"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
@@ -28,22 +29,26 @@
                     </header>
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <field name="product_name"/>
                             <field name="discount_type" class="oe_inline"/>
-                            <field name="currency_id" invisible="0"/>
-                            <label for="discount"/>
-                            <div>
-                                <field name="fixed_amount"
-                                       attrs="{'required': [('discount_type', '=', 'fixed')],
-                                       'invisible': [('discount_type', '!=','fixed')]}"
-                                       class="oe_inline"/>
-                                <field name="discount"
-                                       attrs="{'required': [('discount_type', '=', 'percent')],
-                                       'invisible': [('discount_type', '!=', 'percent')]}"
-                                       class="oe_inline"/>
-                                <span attrs="{'invisible': [('discount_type', '=', 'fixed')]}"
+                            <field name="currency_id" invisible="1"/>
+                            <field name="discount">
+                                <span attrs="{'invisible': [('discount_type', '!=', 'percent')]}" widget="percentage"
                                       class="oe_inline">%</span>
-                            </div>
+                                <span attrs="{'invisible': [('discount_type', '!=', 'fixed')]}" widget="monetary"
+                                      class="oe_inline">$</span>
+                            </field>
+<!--                            <div>-->
+<!--                                <field name="fixed_amount"-->
+<!--                                       attrs="{'required': [('discount_type', '=', 'fixed')],-->
+<!--                                       'invisible': [('discount_type', '!=','fixed')]}"-->
+<!--                                       class="oe_inline" widget="monetary"/>-->
+<!--                                <field name="discount"-->
+<!--                                       attrs="{'required': [('discount_type', '=', 'percent')],-->
+<!--                                       'invisible': [('discount_type', '!=', 'percent')]}"-->
+<!--                                       class="oe_inline"/>-->
+<!--                                -->
+<!--                            </div>-->
                             <field name="minimum_order_amount"/>
                             <field name="date_start"/>
                             <field name="date_end"/>

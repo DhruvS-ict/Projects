@@ -25,7 +25,6 @@ class InheritResConfigSetting(models.TransientModel):
         return res
 
 
-
     @api.model
     def set_values(self):
         res = super(InheritResConfigSetting, self).set_values()

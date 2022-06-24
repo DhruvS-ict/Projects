@@ -7,22 +7,37 @@ class PromotionslDiscountSaleOrder(models.Model):
     _inherit = 'sale.order'
     _description = "Sale Order"
 
-    # @api.model
-    # def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
-    #     """Here context is used to get field values from other model object. And values(values filled
-    #     after running the program inside field) of fields will get inside args."""
-    #     context = self._context or {}
-    #     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~context: ", context)
-    #     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~context: ", context.get('batch_operation_type'))
-    #     if context.get('batch_operation_type'):
-    #         if context.get('batch_operation_type') == 'confirm':
-    #             args = [('state', '=', ['draft', 'sent']),
-    #                     ('user_id', '=', context.get('batch_responsible_id'))]
-    #         elif context.get('batch_operation_type') == 'cancel':
-    #             args = [('state', '=', ['draft', 'sent', 'sale']),
-    #                       ('user_id', '=', context.get('batch_responsible_id'))]
-    #         elif context.get('batch_operation_type') == 'merge':
-    #             args = [('state', '=', ['draft', 'sent']),
-    #                     ('user_id', '=', context.get('batch_responsible_id')),
-    #                     ('partner_id', '=', context.get('batch_customer_id'))]
-    #     return super(BatchSaleWorkflowSaleOrder, self)._search(args, offset, limit, order, count=count, access_rights_uid=access_rights_uid)
+    def apply_promotional_discount(self):
+        print("AAA")
+        min_discount = []
+        promotion = self.env['promotional.discount'].search(
+            [('date_start', '<=', self.date_order), ('date_end', '>=', self.date_order),
+             ('minimum_order_amount', '<', self.amount_total)])
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~promotion :- ", promotion)
+        discount_product = self.env['product.product'].search([('default_code', '=', 'DISC')])
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~discount :- ", discount_product)
+        for rec in promotion:
+            print("~~~~~~~~~~~~~rec   ", rec)
+            if rec.discount_type == 'percent':
+                percentage_value = self.order_line.price_unit - (self.order_line.price_unit * rec.discount / 100)
+                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~percentage_value :- ", percentage_value)
+                min_discount.append(percentage_value)
+                print("~~~~~~~~~~~~~min_discount   ", min_discount)
+                # self.write({'order_line': updated_lines, self.amount_total: percentage_value})
+            elif rec.discount_type == 'fixed':
+                min_discount.append(rec.discount)
+                print("~~~~~~~~~~~~~min_discount   ", min_discount)
+
+        for line in self.order_line:
+            print("~~~~~~~~~~~~~line   ", line)
+            # if min(min_discount):
+            #     final_discount_value = line.price_unit - min(min_discount)
+            line.create({
+                'product_id': discount_product.id,
+                'name': discount_product.name,
+                'order_id': self.id,
+                'price_unit': min(min_discount)
+            })
+            final_discount_value = line.price_unit - min(min_discount)
+
+            self.update({'amount_total': final_discount_value})

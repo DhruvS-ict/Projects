@@ -8,17 +8,17 @@ class PromotionalDiscount(models.Model):
     _name = 'promotional.discount'
     _description = 'promotional discount'
     _inherit = 'mail.thread', 'mail.activity.mixin'
-    _rec_name = 'name'
+    _rec_name = 'product_name'
 
-    name = fields.Char(string='Name')
+    product_name = fields.Char(string='Product Name')
     discount_type = fields.Selection([('percent', 'Percentage'), ('fixed', 'Fixed Amount')],
                                      string='Discount Type', required=True)
-    discount = fields.Char(string='Discount', store=True)
+    discount = fields.Float(string='Discount', store=True)
     minimum_order_amount = fields.Integer(string='Minimum Order Amount')
     date_start = fields.Datetime(string='Start Date')
     date_end = fields.Datetime(string='End Date')
-    currency_id = fields.Many2one('res.currency', string='Discount Currency')
-    fixed_amount = fields.Monetary('Discount (Fixed)')
+    currency_id = fields.Many2one('res.currency', string='Discount Currency', default=2)
+    # fixed_amount = fields.Float('Discount (Fixed)')
 
     # @api.onchange('discount_type')
     # @api.model
@@ -41,4 +41,3 @@ class PromotionalDiscount(models.Model):
         # discount = self.default_get(['discount']).get('discount')
         # print("`````````````````````````````````````````````discount  : ", discount)
         # return {'value': {'discount': discount}}
-        # return {}
