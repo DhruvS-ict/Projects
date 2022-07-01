@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="adding_fields_in_sale_view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+<!--                <header>-->
+<!--                    <button string="Create Invoice" name="generate_invoice" type="object" class="btn-success"/>-->
+<!--                </header>-->
+                <field name="payment_term_id" position="after">
+                    <field name="add_product_id"/>
+                    <field name="add_product_quantity"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

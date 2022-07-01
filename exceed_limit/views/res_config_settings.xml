@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">limit_res_config_settings_view_form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='catalog_setting_container']" position="after">
+                    <!--                    <div class="app_settings_block" data-string="Sales" string="Sales" data-key="Sales">-->
+                    <h2>Exceed Limit</h2>
+                    <div class="row mt16 o_settings_container" name="catalog_setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="variant_options">
+                            <label for="exceed_limit_mail"/>
+                            <field name="exceed_limit_mail"/>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

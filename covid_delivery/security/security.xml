@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_covid_delivery_message" model="res.groups">
+        <field name="name">Group Covid Delivery</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

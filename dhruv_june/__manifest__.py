@@ -1,5 +1,5 @@
 {
-    'name': "Promotional Discount",
+    'name': "dhruv june",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -19,17 +19,14 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale_management', 'mail'],
+    'depends': ['base', 'sale_management', 'account'],
 
     # always loaded
     'data': [
-        'data/promotional_discount_data.xml',
-        'security/ir.model.access.csv',
-        'security/security.xml',
+        'views/account_move_line.xml',
+        'views/product_product.xml',
         'views/sale_order.xml',
-        'views/promotional_discount.xml',
-        'views/promotional_discount_email.xml',
-        'views/promotional_res_config_settings.xml'
+        'views/sale_order_line.xml',
     ],
     'application': True,
     "license": "LGPL-3"

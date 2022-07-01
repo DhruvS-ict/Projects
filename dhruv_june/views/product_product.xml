@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="adding_fields_in_product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.product.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="invoice_policy" position="after">
+                    <field name="add_length"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

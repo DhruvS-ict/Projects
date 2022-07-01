@@ -1,0 +1,14 @@
+<odoo>
+    <!--    Adding Covid alert message inside shop menu-->
+    <template inherit_id="website_sale.products" id="covid_message_alert">
+        <xpath expr="//div[@id='products_grid_before']" position="after">
+            <div class="message">
+                “Attention!We are temporarily
+                suspending our services. Your needs have always been our priority, and our promise
+                is that we will be back to serve you, as soon as possible. These are difficult times,
+                times like no other. Never before, have communities stayed apart to stay safe! Never
+                before, has being at home meant helping the nation!.”
+            </div>
+        </xpath>
+    </template>
+</odoo>

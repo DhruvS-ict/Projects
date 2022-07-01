@@ -7,7 +7,8 @@
             <field name="arch" type="xml">
                 <header>
                     <button name="apply_promotional_discount" string="Apply Promotional Discount" type="object"
-                            class="btn-warning" groups="promotional_discount.group_promotional_discount"/>
+                            class="btn-warning" groups="promotional_discount.group_promotional_discount"
+                            attrs="{'invisible': [('button_visible', '=', 'False')]}"/>
                 </header>
                 <field name="payment_term_id" position="after">
                     <field name="amount_undiscounted"/>

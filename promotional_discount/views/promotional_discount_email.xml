@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <record id="promotional_discount_email" model="mail.template">
+            <field name="name">Promotional Discount email template</field>
+            <field name="model_id" ref="promotional_discount.model_promotional_discount"/>
+            <field name="email_from">{{ object.discounted_mail_id }}</field>
+            <field name="email_to">{{ object.discounted_customer_id.email }}</field>
+            <field name="subject">Promotional Discount Details</field>
+            <field name="body_html" type="html">
+                <p>
+                    Good Morning
+                    <span t-esc="object.discounted_customer_id.name"/>
+<!--                    <br/>-->
+<!--                    Contact :-->
+<!--                    <span t-esc="object.contact_id.name"/>-->
+<!--                    <br/>-->
+<!--                    No. of Follow Ups :-->
+<!--                    <span t-esc="object.no_follow_ups"/>-->
+<!--                    <br/>-->
+<!--                    Sale Order :-->
+<!--                    <span t-esc="object.sale_order_id.name"/>-->
+<!--                    <br/>-->
+<!--                    Sales Person :-->
+<!--                    <span t-esc="object.sales_person.name"/>-->
+<!--                    <br/>-->
+<!--                    &lt;!&ndash;                     Contact Sale History: &ndash;&gt;-->
+<!--                    <table class="table table-sm o_main_table">-->
+<!--                        &lt;!&ndash;  In case we want to repeat the header, remove "display: table-row-group"  &ndash;&gt;-->
+<!--                        <thead style="display: table-row-group">-->
+<!--                            <tr>-->
+<!--                                <th name="th_contact" class="text-left">Contact Sale</th>-->
+<!--                                <th name="th_create" class="text-right">Created On</th>-->
+<!--                                <th name="th_priceunit" class="text-right">Created By</th>-->
+<!--                                <th name="th_old" class="text-right">Old State</th>-->
+<!--                                <th name="th_new" class="text-right">New State</th>-->
+<!--                                <th name="th_old_follow" class="text-right">Old follow ups</th>-->
+<!--                                <th name="th_new_follow" class="text-right">New follow ups</th>-->
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody class="sale_tbody">-->
+<!--                            &lt;!&ndash;                             <t t-set="doc" t-value="ctx.get('lst', [])"/> &ndash;&gt;-->
+<!--                            <t t-foreach="object.contact_sale_history_lines" t-as="line">-->
+<!--                                <tr>-->
+<!--                                    <td name="td_name">-->
+<!--                                        <span t-field="line.contact_sale"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="td_quantity" class="text-right">-->
+<!--                                        <span t-field="line.create_date"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="td_priceunit" class="text-right">-->
+<!--                                        <span t-field="line.create_uid"/>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span t-field="line.old_state"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="td_taxes" class="text-right">-->
+<!--                                        <span t-esc="line.new_state"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="td_taxes" class="text-right">-->
+<!--                                        <span t-esc="line.old_follow_ups"/>-->
+<!--                                    </td>-->
+<!--                                    <td name="td_taxes" class="text-right">-->
+<!--                                        <span t-esc="line.new_follow_ups"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </t>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

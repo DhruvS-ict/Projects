@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Sub Template    -->
+    <template inherit_id="report_saleorder_document" id="sale_report_template">
+        <t t-foreach="docs" t-as="o">
+            <!--            <t t-call="web.html_container">-->
+            <!--                <t t-call="web.external_layout">-->
+            <div class="page">
+                <div class="oe_structure"/>
+                <span t-field="o.invoices_image"
+                      t-options="{'widget': 'image', 'preview_image': 'invoices_image'}"
+                      class="d-flex h-100 justify-content-center align-items-center"/>
+                <h2 class="mt16">
+                    <span t-field="o.invoices_name"/>
+                </h2>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <table class="table table-sm o_main_table">
+                            <tr>
+                                <td width="100%">
+                                    <table>
+                                        <tr>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>E-mail</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.invoices_email"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>Salary</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.invoices_salary"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>Summary</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.invoices_summary"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <strong>Stages</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <strong>:</strong>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.invoices_stages"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

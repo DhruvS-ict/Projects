@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="view_move_form" model="ir.ui.view">
+            <field name="name">adding fields into invoicelines</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field [@name='invoice_line_ids']/tree" position="inside">
+                    <field name="move_line_length" optional="hide"/>
+                    <field name="move_line_total_length" optional="hide"/>
+                </xpath>
+                <xpath expr="//field [@name = 'line_ids'] / tree" position="inside">
+                    <field name="move_line_length" optional="hide"/>
+                    <field name="move_line_total_length" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

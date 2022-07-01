@@ -1,5 +1,5 @@
 {
-    'name': "Promotional Discount",
+    'name': "Covid Delivery",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -19,18 +19,17 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale_management', 'mail'],
+    'depends': ['base', 'website'],
 
     # always loaded
     'data': [
-        'data/promotional_discount_data.xml',
-        'security/ir.model.access.csv',
         'security/security.xml',
-        'views/sale_order.xml',
-        'views/promotional_discount.xml',
-        'views/promotional_discount_email.xml',
-        'views/promotional_res_config_settings.xml'
+        'views/covid_delivery.xml',
+        'views/covid_res_config_settings.xml'
     ],
+    'assets': {'web.assets_frontend': [
+        'covid_delivery/static/src/covid_delivery.css',
+    ], },
     'application': True,
     "license": "LGPL-3"
 }

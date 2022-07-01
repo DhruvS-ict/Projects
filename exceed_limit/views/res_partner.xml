@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+<!--                <header>-->
+<!--                    <button name="apply_promotional_discount" string="Apply Promotional Discount" type="object"-->
+<!--                            class="btn-warning" groups="promotional_discount.group_promotional_discount"/>-->
+<!--                </header>-->
+                <field name="category_id" position="after">
+                    <field name="credit_limit" widget="boolean_button"/>
+                    <field name="credit_limit_score" attrs="{'invisible': [('credit_limit', '=', False)]}"/>
+                    <field name="blocking_limit" widget="boolean"/>
+                    <field name="blocking_limit_score" attrs="{'invisible': [('blocking_limit', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

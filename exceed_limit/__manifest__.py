@@ -1,5 +1,5 @@
 {
-    'name': "Promotional Discount",
+    'name': "Exceed Limit",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -19,17 +19,15 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale_management', 'mail'],
+    'depends': ['base', 'sale_management', 'mail', 'contacts'],
 
     # always loaded
     'data': [
-        'data/promotional_discount_data.xml',
-        'security/ir.model.access.csv',
-        'security/security.xml',
-        'views/sale_order.xml',
-        'views/promotional_discount.xml',
-        'views/promotional_discount_email.xml',
-        'views/promotional_res_config_settings.xml'
+        # 'security/ir.model.access.csv',
+        # 'views/exceed_limit.xml',
+        'views/exceed_limit_email.xml',
+        'views/res_config_settings.xml',
+        'views/res_partner.xml',
     ],
     'application': True,
     "license": "LGPL-3"
