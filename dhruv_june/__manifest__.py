@@ -23,6 +23,7 @@
 
     # always loaded
     'data': [
+        'reports/sale_report.xml',
         'views/account_move_line.xml',
         'views/product_product.xml',
         'views/sale_order.xml',

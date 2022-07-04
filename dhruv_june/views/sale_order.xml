@@ -5,9 +5,6 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-<!--                <header>-->
-<!--                    <button string="Create Invoice" name="generate_invoice" type="object" class="btn-success"/>-->
-<!--                </header>-->
                 <field name="payment_term_id" position="after">
                     <field name="add_product_id"/>
                     <field name="add_product_quantity"/>
