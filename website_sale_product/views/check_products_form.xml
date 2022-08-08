@@ -1,0 +1,50 @@
+<odoo>
+    <record id="check_products_website_menu" model="website.menu">
+        <field name="name">Website Sale Products</field>
+        <field name="url">/check_product</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+    <template id="check_products_form" name="Product Lists">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <form role="form" action="/check_product/products" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <section>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-75">
+                                        <label for="detailed_type" class="control-label">Product Type</label>
+                                        <select name="detailed_type" t-att-value="detailed_type" id="detailed_type" class="selection">
+                                            <option value="consu">Consumable</option>
+                                            <option value="service">Services</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="" class="control-label">Product Sold
+                                        </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="checkbox" name="sale_ok"
+                                               t-att-value="sale_ok"
+                                               id="sale_ok" class="focused_inputs"> Can be Sold</input><br/>
+                                        <input type="checkbox" name="purchase_ok"
+                                               t-att-value="purchase_ok"
+                                               id="purchase_ok" class="focused_inputs"> Can be Purchased</input>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="submit">
+                            <button class="btn-primary" type="submit">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

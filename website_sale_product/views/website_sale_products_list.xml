@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    <record id="website_sale_product_menu" model="website.menu">-->
+    <!--        <field name="name">Website Sale Products</field>-->
+    <!--        <field name="url">/website_sale_products</field>-->
+    <!--        <field name="parent_id" ref="website.main_menu"/>-->
+    <!--    </record>-->
+
+    <!--    <template id="website_sale_product_web_menu_list" name="Website Sale Products">-->
+    <!--        <t t-call="portal.portal_layout">-->
+    <!--            <t t-set="breadcrumbs_searchbar" t-value="True"/>-->
+
+    <!--            <t t-call="portal.portal_searchbar">-->
+    <!--                <t t-set="title">Website Sale Products</t>-->
+    <!--            </t>-->
+    <!--            <div class="s_allow_columns">-->
+    <!--                <div class="d-flex justify-content-between align-items-center">-->
+    <!--                    <h1>-->
+    <!--                        Website Sale Products List-->
+    <!--                    </h1>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <t t-call="portal.portal_table">-->
+    <!--                <t t-foreach="product_record" t-as="product" class="text-center">-->
+    <!--                    <div class="gallery">-->
+    <!--                        <img>-->
+    <!--                            <span t-field="product.image_1920"-->
+    <!--                                  t-options="{'widget': 'image', 'preview_image': 'image_1920'}"/>-->
+    <!--                        </img>-->
+    <!--                        <div class="desc">-->
+    <!--                            <span t-esc="product.name"/>-->
+    <!--                        </div>-->
+    <!--                        <div class="desc">-->
+    <!--                            <span t-esc="product.list_price"/>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </t>-->
+    <!--            </t>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--     Adding Covid alert message inside shop menu -->
+    <template inherit_id="website_sale.products_item" id="add_product_variants">
+        <xpath expr="//div[@h='p-2 o_wsale_product_information_text']"
+               position="inside">
+            <div class="desc">
+                <span t-esc="product.product_template_variant_value_ids.ids"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

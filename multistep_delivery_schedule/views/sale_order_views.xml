@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_form_multistep_delivery" model="ir.ui.view">
+            <field name="name">sale.order.inherited.form.multistep.delivery</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="activate_multistep_delivery"
+                            id="activate_multistep_delivery"
+                            string="Activate Multistep Delivery" class="btn-primary"
+                            type="object"
+                            attrs="{'invisible': ['|',('state', 'not in',
+                            ['draft','sent']),('multistep_delivery', '=', True)]}"/>
+                    <button name="deactivate_multistep_delivery"
+                            id="deactivate_multistep_delivery"
+                            string="Deactivate Multistep Delivery" class="btn-primary"
+                            type="object"
+                            attrs="{'invisible': ['|',('state', 'not in',
+                            ['draft','sent']), ('multistep_delivery', '!=', True)]}"/>
+                    <button name="update_multistep_delivery"
+                            id="update_multistep_delivery"
+                            string="Update Multistep Delivery" class="btn-primary"
+                            type="object"
+                            attrs="{'invisible': ['|',('state', 'not in',
+                            ['draft','sent']),('multistep_delivery', '!=', True)]}"/>
+                </xpath>
+                <xpath expr="//group[@name='sale_shipping']/label[@for='commitment_date']"
+                       position="before">
+                    <field name="multistep_delivery" readonly="1"/>
+                </xpath>
+                <xpath expr="//page[@name='other_information']"
+                       position="after">
+                    <page string="Delivery Schedule" name="multistep_delivery_line"
+                          attrs="{'invisible': [('multistep_delivery', '!=', True)]}">
+                        <field name="delivery_ids" context="{'default_temp_sale_id': id}">
+                            <tree>
+                                <field name="schedule_date"/>
+                                <field name="delivery_schedule_ids"/>
+                            </tree>
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="schedule_date" required="1"/>
+                                            <field name="sale_id" invisible="1"
+                                                   domain="[('id','=',parent.id)]"/>
+                                            <field name="temp_sale_id" invisible="1"/>
+                                        </group>
+                                    </group>
+                                    <field name="delivery_schedule_ids">
+                                        <tree editable="bottom">
+                                            <field name="sale_line_id"
+                                                   required="1"
+                                                   domain="[('order_id','=',
+                                                   parent.temp_sale_id)]"/>
+                                            <field name="quantity"/>
+                                        </tree>
+                                    </field>
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

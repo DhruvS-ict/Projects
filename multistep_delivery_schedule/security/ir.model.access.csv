@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_schedule,delivery.schedule,model_delivery_schedule,base.group_user,1,1,1,1
+access_delivery_schedule_line,delivery.schedule.line,model_delivery_schedule_line,base.group_user,1,1,1,1
+access_manage_delivery_schedule.wizard,manage.delivery.schedule.wizard,model_manage_delivery_schedule_wizard,base.group_user,1,1,1,1
+access_delivery_schedule_wizard_line,delivery.schedule.wizard.line,model_delivery_schedule_wizard_line,base.group_user,1,1,1,1
+access_delivery_schedule_wizard,delivery.schedule.wizard,model_delivery_schedule_wizard,base.group_user,1,1,1,1
