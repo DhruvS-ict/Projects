@@ -55,31 +55,17 @@ class SaleOrder(models.Model):
         This function sumup the quantity for respected product and raise error on
         checking conditions.
         """
-        for order_line in self.order_line:
-            total_qty = sum(line.quantity for line in
-                            self.delivery_ids.delivery_schedule_ids.filtered(
-                                lambda order: order.sale_line_id == order_line))
-            print("\n\n\n============", total_qty)
-            if not total_qty == order_line.product_uom_qty:
-                raise ValidationError(
-                    "Please check the quantity of %s to be delivered."
-                    % order_line.display_name
+        if self.multistep_delivery:
+            for order_line in self.order_line:
+                total_qty = sum(
+                    line.quantity
+                    for line in self.delivery_ids.delivery_schedule_ids.filtered(
+                        lambda order: order.sale_line_id == order_line
+                    )
                 )
-
-            # total_quantity = []
-            # for line in self.delivery_ids.delivery_schedule_ids.filtered(
-            #         lambda order: order.sale_line_id == order_line
-            # ):
-            #     total_quantity.append(line.quantity)
-            #     total = sum(total_quantity)
-            # if total < order_line.product_uom_qty:
-            #     raise ValidationError(
-            #         "Please check the quantity of %s to be delivered."
-            #         % order_line.display_name
-            #     )
-            # elif total > order_line.product_uom_qty:
-            #     raise ValidationError(
-            #         "Please check the quantity of %s to be delivered."
-            #         % order_line.display_name
-            #     )
+                if not total_qty == order_line.product_uom_qty:
+                    raise ValidationError(
+                        "Please check the quantity of %s to be delivered."
+                        % order_line.display_name
+                    )
         return super(SaleOrder, self).action_confirm()
