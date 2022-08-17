@@ -4,3 +4,4 @@
 from . import sale_order
 from . import delivery_schedule
 from . import sale_order_line
+from . import stock_move

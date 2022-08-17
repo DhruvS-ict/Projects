@@ -24,6 +24,7 @@
     "depends": [
         "base",
         "sale_management",
+        "stock"
     ],
     "data": [
         "security/ir.model.access.csv",
