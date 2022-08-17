@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo, Aktiv Software.
 # See LICENSE file for full copyright & licensing details.
-"""import models, fields and api from odoo"""
 from odoo import models, fields, api, _
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
@@ -134,11 +133,7 @@ class DeliveryScheduleWizard(models.TransientModel):
         res_model = self._context.get("active_model", False)
         if res_id and res_model == "sale.order":
             record = self.env[res_model].browse(res_id)
-            res.update(
-                {
-                    "sale_id": record.id, "temp_sale_id": record.id
-                }
-            )
+            res.update({"sale_id": record.id, "temp_sale_id": record.id})
         return res
 
 

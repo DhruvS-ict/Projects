@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo, Aktiv Software.
 # See LICENSE file for full copyright & licensing details.
-"""import models, fields and api from odoo"""
-from odoo import models, fields, api
+from odoo import models, fields
 from odoo.exceptions import ValidationError
 
 
